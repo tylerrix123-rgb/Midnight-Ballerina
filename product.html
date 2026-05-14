@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product | Midnight Ballerinas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINAS</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display=(document.querySelector('.nav-links').style.display==='flex'?'none':'flex')">Menu</div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="pp-breadcrumb">
+    <a href="shop.html">Shop</a>
+    <span class="pp-breadcrumb-sep">›</span>
+    <span id="pp-bc-cat"></span>
+    <span class="pp-breadcrumb-sep">›</span>
+    <span id="pp-bc-name"></span>
+  </div>
+
+  <!-- PRODUCT HERO -->
+  <section class="pp-hero">
+
+    <!-- IMAGE COLUMN -->
+    <div class="pp-img-col">
+      <div class="pp-img-wrap" id="pp-img-wrap">
+        <img id="pp-img" src="" alt="" />
+      </div>
+      <!-- Purity badge -->
+      <div class="pp-purity-strip">
+        <span>✦ HPLC-Tested</span>
+        <span>✦ 99.7% Purity</span>
+        <span>✦ ISO-9001 Facility</span>
+      </div>
+    </div>
+
+    <!-- DETAIL COLUMN -->
+    <div class="pp-detail-col">
+      <div class="pp-eyebrow" id="pp-eyebrow"></div>
+      <h1 class="pp-headline" id="pp-headline"></h1>
+      <div class="pp-compound-line" id="pp-compound-line"></div>
+      <div id="pp-pills" style="margin-bottom:16px;"></div>
+
+      <p class="pp-tagline" id="pp-tagline"></p>
+      <p class="pp-desc" id="pp-desc"></p>
+
+      <ul class="pp-research-list" id="pp-research-list"></ul>
+
+      <!-- Price + Qty -->
+      <div class="pp-buy-row">
+        <div class="pp-price" id="pp-price"></div>
+        <div class="pp-qty-wrap">
+          <button class="pp-qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="pp-qty-val" id="pp-qty">1</span>
+          <button class="pp-qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <button class="pp-add-btn" id="pp-add-btn" onclick="addToBasket()">
+        Add to Basket
+      </button>
+
+      <a href="cart.html" class="pp-basket-link" id="pp-basket-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        View Basket
+        <span class="pp-basket-count" id="pp-basket-count" style="display:none;"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- STACKS WELL WITH -->
+  <section class="section reveal" id="pp-stacks-section">
+    <div class="section-header">
+      <div class="section-eyebrow">Complete the Stack</div>
+      <h2 class="section-title">Stacks well <span class="italic">with</span></h2>
+      <p class="section-sub">These compounds are built to run alongside each other — complementary pathways, no conflicts.</p>
+    </div>
+    <div class="pp-stacks-grid" id="pp-stacks-grid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINAS</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Basket</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only.
+      Not for human or veterinary use. © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    /* ── Extended product detail data ─────────────────────── */
+    var MB_PRODUCT_DETAIL = {
+      retatrutide: {
+        eyebrow: 'Lean · 01',
+        headline: 'Stage<br><em>Lean</em>',
+        image: 'images/stage-lean.jpg',
+        imageFit: 'cover',
+        tagline: 'Reduces appetite. Makes burning fat effortless. Keeps your energy sustained.',
+        desc: 'This is the strongest fat loss peptide available. Appetite reduces naturally within the first week — food stops being something you think about all day, without feeling deprived. Your body shifts to burning fat for energy, which keeps you feeling fuelled and steady throughout the day. Because it targets three receptors at once it works faster and more thoroughly than single-receptor alternatives like semaglutide. You hold onto your muscle while the fat comes off. One injection a week. Most people notice a real difference within 3–4 weeks.',
+        research: [
+          'Appetite reduces naturally — most notice it within the first week',
+          'Body shifts to burning fat for energy — sustained, not jittery',
+          'Targets stubborn fat stores, including around the waist and hips',
+          'Preserves muscle while losing body fat',
+          'Stronger and more thorough than single-receptor alternatives like Ozempic',
+          'Once a week injection · 8–12 week cycle recommended',
+        ],
+        stacks: ['encore', 'ghkcu'],
+      },
+      ghkcu: {
+        eyebrow: 'Glow · 02',
+        headline: 'Velvet<br><em>Skin</em>',
+        image: 'images/velvet-skin.jpg',
+        imageFit: 'cover',
+        tagline: 'Firmer skin. Faster healing. Fewer lines.',
+        desc: 'GHK-Cu tells your skin to produce more collagen — the thing that keeps it firm, plump, and smooth. The difference shows in texture first. Skin feels thicker. Fine lines soften. Spots and blemishes heal faster than normal. Over a full cycle you\'ll notice your skin looks visibly healthier — not just on the surface, but the kind of glow that doesn\'t wash off. Works best as part of the full Glow Stack alongside MT-2 and Crystal Bright.',
+        research: [
+          'Skin feels firmer and looks plumper within weeks',
+          'Fine lines and wrinkles reduce over a full cycle',
+          'Spots, scars and blemishes heal noticeably faster',
+          'Skin texture smooths out — pores appear smaller',
+          'Works from the inside — not a topical, it goes deeper',
+          'Pairs directly with MT-2 and Glutathione for full Glow Stack effect',
+        ],
+        stacks: ['mt2', 'glutathione'],
+      },
+      mt2: {
+        eyebrow: 'Glow · 03',
+        headline: 'Skin Glow<br><em>MT-2</em>',
+        image: 'images/mt2-spray.jpg',
+        imageFit: 'cover',
+        tagline: 'A deep, even tan — no sun, no needles, no hassle.',
+        desc: 'Melanotan-2 triggers your body\'s own tanning system. Your skin produces more melanin — the pigment that creates a tan — without needing UV exposure to activate it. The result is a deep, even, natural-looking colour that builds gradually over 1–2 weeks. This version comes pre-mixed as a nasal spray so there are no needles, no reconstitution, nothing to prepare. Just spray and go. Two sprays per nostril, every other day.',
+        research: [
+          'Gives a deep, natural-looking tan without sun exposure',
+          'Colour builds gradually over 1–2 weeks of use',
+          'Even tone — no patchy or orange results',
+          'No needles — pre-mixed nasal spray, ready to use from the box',
+          '2 sprays per nostril, every other day',
+          'Works even on skin that doesn\'t tan easily naturally',
+        ],
+        stacks: ['ghkcu', 'glutathione'],
+      },
+      encore: {
+        eyebrow: 'Recovery · 04',
+        headline: '<em>Encore</em>',
+        image: 'images/encore.jpg',
+        imageFit: 'cover',
+        imagePos: 'center 30%',
+        tagline: 'Heal faster. Hurt less. Wake up ready to go again.',
+        desc: 'Two recovery peptides in one vial. BPC-157 is known for healing soft tissue — muscles, tendons, ligaments — and it also settles inflammation in the gut. TB-500 works on a bigger scale, helping your whole body repair faster and improving how flexible and mobile you feel. Together they cut your recovery time down significantly. If you train hard, perform every night, or carry any kind of ongoing ache or injury — this is what closes the gap between the output and the recovery.',
+        research: [
+          'Reduces recovery time after intense physical output',
+          'Eases muscle soreness and joint aches noticeably',
+          'Heals soft tissue damage — muscles, tendons, ligaments',
+          'Settles gut inflammation and digestive issues',
+          'Improves flexibility and range of movement over time',
+          'Take before sleep — works while your body is in recovery mode',
+        ],
+        stacks: ['retatrutide', 'glutathione'],
+      },
+      glutathione: {
+        eyebrow: 'Glow · 05',
+        headline: 'Crystal<br><em>Bright</em>',
+        image: 'images/crystal-bright.jpg',
+        imageFit: 'cover',
+        imagePos: 'center 40%',
+        tagline: 'Brighter, clearer skin — from the inside out.',
+        desc: 'Glutathione is your body\'s most powerful antioxidant — and when levels are high, it shows on your skin. Dark spots fade. Uneven tone evens out. Skin looks cleaner, clearer, and noticeably more luminous. It\'s not a skin treatment you apply — it works systemically, which means it affects your whole complexion at once. The finishing layer of the Glow Stack. Everything else builds the foundation; Crystal Bright is what makes it shine under the lights.',
+        research: [
+          'Brightens overall skin tone and reduces dullness',
+          'Fades dark spots, hyperpigmentation and uneven patches',
+          'Skin looks cleaner and clearer — less blotchy',
+          'Works systemically — affects whole complexion at once',
+          'Results build over a 6–12 week cycle',
+          'Most effective when combined with GHK-Cu and MT-2',
+        ],
+        stacks: ['ghkcu', 'mt2'],
+      },
+      pins: {
+        eyebrow: 'Supplies',
+        headline: 'Stage<br><em>Pins</em>',
+        image: 'images/insulin-pins.svg',
+        imageFit: 'contain',
+        tagline: 'Fine gauge insulin syringes. Barely feel a thing.',
+        desc: '29 gauge insulin syringes — the standard for subcutaneous injections. The needle is short and very fine, so the injection is quick and virtually painless when done right. Each syringe is individually wrapped and pre-sterilised. You get 10 per pack. These are what you use for Retatrutide and Encore — one syringe per injection, then dispose safely.',
+        research: [
+          '29 gauge — fine needle, minimal discomfort',
+          '0.5 inch length — correct depth for subcutaneous use',
+          '1ml capacity — right size for all MB compounds',
+          'Pre-sterilised and individually wrapped',
+          '10 syringes per pack',
+        ],
+        stacks: ['swabs', 'draw'],
+      },
+      swabs: {
+        eyebrow: 'Supplies',
+        headline: 'Prep<br><em>Swabs</em>',
+        image: 'images/prep-pads.svg',
+        imageFit: 'contain',
+        tagline: 'Alcohol prep pads. Clean site, clean injection, every time.',
+        desc: 'Sterile 70% isopropyl alcohol wipes — 50 per pack. Use one to wipe the injection site before you inject, and one to clean the top of the vial before you draw. Simple, essential, non-negotiable. Keeps everything sterile and reduces any risk of irritation at the site.',
+        research: [
+          'Wipe injection site before each use',
+          'Wipe vial top before drawing the compound',
+          '70% isopropyl alcohol — correct concentration for sterility',
+          'Individually wrapped — one per injection',
+          '50 pads per pack',
+        ],
+        stacks: ['pins', 'draw'],
+      },
+      draw: {
+        eyebrow: 'Supplies',
+        headline: 'Draw<br><em>Set</em>',
+        image: 'images/draw-needles.svg',
+        imageFit: 'contain',
+        tagline: 'Blunt needles for mixing your compound. No mess, no waste.',
+        desc: 'When you mix (reconstitute) your lyophilised powder with bacteriostatic water, you need a blunt drawing needle to do it cleanly. The blunt tip lets you push through the vial stopper without damaging it, and transfer the water without any waste or mess. You use a draw needle to mix — then swap to your insulin pin to inject. 5 per pack, green cap.',
+        research: [
+          'Used to mix bacteriostatic water into your vial',
+          'Blunt tip protects the vial stopper — no damage, no leaks',
+          'Use to draw, then swap to your insulin pin to inject',
+          '21 gauge · green cap',
+          '5 needles per pack',
+        ],
+        stacks: ['pins', 'swabs'],
+      },
+      sharps: {
+        eyebrow: 'Supplies',
+        headline: 'Stage<br><em>Safe</em>',
+        image: 'images/sharps-container.svg',
+        imageFit: 'contain',
+        tagline: 'Discreet sharps disposal. Goes anywhere.',
+        desc: 'A compact, lockable sharps container for used needles and syringes. Matte black, no markings on the outside, sized to fit in a bag or dressing room drawer. You should never put used needles in the bin — this keeps everything safe and contained. Small enough for hand luggage if you\'re travelling.',
+        research: [
+          'Drop used needles and syringes straight in after use',
+          'Locks shut — nothing comes back out',
+          'Matte black, no external markings — completely discreet',
+          'Compact enough for hand luggage and travel bags',
+          'Never put used sharps in regular household bins',
+        ],
+        stacks: ['pins', 'pouch'],
+      },
+      pouch: {
+        eyebrow: 'Supplies',
+        headline: 'Night<br><em>Kit</em>',
+        image: 'images/night-pouch.svg',
+        imageFit: 'contain',
+        tagline: 'Keep your whole kit in one place. Insulated. Discreet.',
+        desc: 'An insulated travel pouch that keeps your vials, pins, swabs and sharps container together in one organised kit. The insulation helps keep reconstituted compounds stable when you\'re away from a fridge. No branding on the outside. Designed to sit in a bag without drawing attention. If you\'re working nights, travelling between venues, or just want everything in one place — this is how you carry your protocol.',
+        research: [
+          'Insulated to keep compounds stable when away from the fridge',
+          'Fits your full protocol — vials, pins, swabs, sharps container',
+          'No external branding — looks like any other pouch',
+          'Compact enough for any bag or hand luggage',
+          'Keeps your kit organised and in one place',
+        ],
+        stacks: ['sharps', 'pins'],
+      },
+    };
+
+    /* ── Page state ───────────────────────────────────────── */
+    var currentKey = null;
+    var qty = 1;
+
+    function changeQty(delta) {
+      qty = Math.max(1, qty + delta);
+      document.getElementById('pp-qty').textContent = qty;
+    }
+
+    function addToBasket() {
+      if (!currentKey) return;
+      mbAddItem(currentKey, qty);
+
+      var btn = document.getElementById('pp-add-btn');
+      btn.textContent = '✓ Added to Basket';
+      btn.classList.add('pp-add-btn--added');
+      updateBasketLink();
+
+      setTimeout(function() {
+        btn.innerHTML = 'Add ' + (qty > 1 ? qty + ' More' : 'More');
+        btn.classList.remove('pp-add-btn--added');
+      }, 2000);
+    }
+
+    function updateBasketLink() {
+      var count = mbCartCount();
+      var countEl = document.getElementById('pp-basket-count');
+      if (count > 0) {
+        countEl.textContent = count + ' item' + (count === 1 ? '' : 's');
+        countEl.style.display = 'inline-flex';
+      } else {
+        countEl.style.display = 'none';
+      }
+    }
+
+    /* ── Render page ──────────────────────────────────────── */
+    function renderPage() {
+      var params = new URLSearchParams(window.location.search);
+      currentKey = params.get('id');
+
+      if (!currentKey || !MB_CATALOG[currentKey] || !MB_PRODUCT_DETAIL[currentKey]) {
+        window.location.href = 'shop.html';
+        return;
+      }
+
+      var cat  = MB_CATALOG[currentKey];
+      var det  = MB_PRODUCT_DETAIL[currentKey];
+
+      // Page title
+      document.title = cat.name + ' | Midnight Ballerinas';
+
+      // Breadcrumb
+      document.getElementById('pp-bc-cat').textContent = cat.cat.charAt(0).toUpperCase() + cat.cat.slice(1);
+      document.getElementById('pp-bc-name').textContent = cat.name;
+
+      // Image
+      var img = document.getElementById('pp-img');
+      img.src = det.image;
+      img.alt = cat.name;
+      img.style.objectFit  = det.imageFit || 'cover';
+      img.style.objectPosition = det.imagePos || 'center center';
+      if (det.imageFit === 'contain') {
+        document.getElementById('pp-img-wrap').classList.add('pp-img-wrap--contain');
+      }
+
+      // Text
+      document.getElementById('pp-eyebrow').textContent   = det.eyebrow;
+      document.getElementById('pp-headline').innerHTML     = det.headline;
+      document.getElementById('pp-compound-line').textContent = cat.spec;
+      document.getElementById('pp-tagline').textContent   = det.tagline;
+      document.getElementById('pp-desc').textContent      = det.desc;
+      document.getElementById('pp-price').innerHTML       = '<span style="font-size:16px;color:var(--text-muted);vertical-align:super;margin-right:2px;">$</span>' + cat.price;
+
+      // Pills
+      var pillsEl = document.getElementById('pp-pills');
+      if (cat.pill) {
+        var cls = cat.pill === 'Nasal Spray' ? 'co-spray-pill' : 'co-dual-pill';
+        pillsEl.innerHTML = '<span class="' + cls + '" style="font-size:10px;padding:4px 12px;">' + cat.pill + '</span>';
+      }
+
+      // Research notes
+      var listEl = document.getElementById('pp-research-list');
+      listEl.innerHTML = det.research.map(function(r) {
+        return '<li>' + r + '</li>';
+      }).join('');
+
+      // Basket link count
+      updateBasketLink();
+
+      // Stacks with
+      var stacksEl = document.getElementById('pp-stacks-grid');
+      var validStacks = (det.stacks || []).filter(function(k) { return MB_CATALOG[k] && MB_PRODUCT_DETAIL[k]; });
+
+      if (validStacks.length === 0) {
+        document.getElementById('pp-stacks-section').style.display = 'none';
+      } else {
+        stacksEl.innerHTML = validStacks.map(function(k) {
+          var sc = MB_CATALOG[k];
+          var sd = MB_PRODUCT_DETAIL[k];
+          return '<a href="product.html?id=' + k + '" class="pp-stack-card">'
+            + '<div class="pp-stack-card-img" style="background-image:url(\'' + sd.image + '\')"></div>'
+            + '<div class="pp-stack-card-body">'
+            +   '<div class="pp-stack-card-tag">' + sd.eyebrow + '</div>'
+            +   '<div class="pp-stack-card-name">' + sc.name + '</div>'
+            +   '<div class="pp-stack-card-spec">' + sc.spec + '</div>'
+            +   '<div class="pp-stack-card-price">$' + sc.price + '</div>'
+            + '</div>'
+            + '</a>';
+        }).join('');
+      }
+    }
+
+    renderPage();
+
+    // Scroll reveal
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  </script>
+</body>
+</html>

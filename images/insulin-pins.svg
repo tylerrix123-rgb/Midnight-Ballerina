@@ -1,0 +1,63 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1522"/><stop offset="100%" stop-color="#14101a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#e0a8b4" stop-opacity="0.3"/><stop offset="100%" stop-color="#e0a8b4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="barrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(248,249,250,0.08)"/><stop offset="30%" stop-color="rgba(248,249,250,0.22)"/>
+      <stop offset="70%" stop-color="rgba(248,249,250,0.15)"/><stop offset="100%" stop-color="rgba(248,249,250,0.05)"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="225" rx="120" ry="140" fill="url(#glow)"/>
+  <!-- Three staggered syringes -->
+  <!-- Syringe 1 (back left) -->
+  <g transform="rotate(-12, 185, 250)" opacity="0.5">
+    <rect x="155" y="100" width="30" height="130" rx="4" fill="url(#barrel)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <rect x="159" y="104" width="4" height="122" rx="2" fill="rgba(255,255,255,0.07)"/>
+    <rect x="148" y="95" width="44" height="14" rx="3" fill="rgba(201,130,141,0.6)"/>
+    <rect x="167" y="230" width="6" height="70" rx="2" fill="rgba(255,255,255,0.15)"/>
+    <polygon points="170,300 168,330 172,330" fill="rgba(255,255,255,0.3)"/>
+  </g>
+  <!-- Syringe 2 (front centre, main) -->
+  <g transform="rotate(0, 200, 250)">
+    <rect x="170" y="95" width="34" height="145" rx="5" fill="url(#barrel)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <rect x="174" y="100" width="5" height="135" rx="2" fill="rgba(255,255,255,0.09)"/>
+    <!-- Graduation marks -->
+    <line x1="193" y1="115" x2="202" y2="115" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="130" x2="202" y2="130" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="145" x2="202" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="160" x2="202" y2="160" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="175" x2="202" y2="175" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="190" x2="202" y2="190" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="193" y1="210" x2="204" y2="210" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+    <line x1="193" y1="225" x2="204" y2="225" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+    <!-- Plunger cap -->
+    <rect x="163" y="87" width="48" height="16" rx="4" fill="#C9828D"/>
+    <rect x="163" y="87" width="48" height="7" rx="4" fill="rgba(255,255,255,0.22)"/>
+    <!-- Plunger rod -->
+    <rect x="186" y="60" width="12" height="30" rx="2" fill="rgba(255,255,255,0.18)"/>
+    <rect x="180" y="55" width="24" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
+    <!-- Needle hub -->
+    <rect x="181" y="240" width="12" height="18" rx="2" fill="rgba(255,255,255,0.2)"/>
+    <!-- Needle -->
+    <line x1="187" y1="258" x2="187" y2="330" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+    <line x1="187" y1="330" x2="187" y2="348" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/>
+  </g>
+  <!-- Syringe 3 (back right) -->
+  <g transform="rotate(14, 215, 250)" opacity="0.45">
+    <rect x="195" y="100" width="30" height="130" rx="4" fill="url(#barrel)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <rect x="148" y="95" width="44" height="14" rx="3" transform="translate(47,0)" fill="rgba(201,130,141,0.55)"/>
+    <line x1="213" y1="248" x2="213" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+  </g>
+  <!-- Label -->
+  <text x="200" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="4" fill="#C9828D" opacity="0.92">STAGE PINS</text>
+  <text x="200" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.38)" letter-spacing="2">29G · 0.5" · 1ML · 10-PACK</text>
+  <!-- Sparkles -->
+  <circle cx="128" cy="140" r="1.5" fill="#e0a8b4" opacity="0.5"/>
+  <circle cx="272" cy="118" r="1" fill="white" opacity="0.28"/>
+  <circle cx="120" cy="310" r="1" fill="#C9828D" opacity="0.38"/>
+</svg>

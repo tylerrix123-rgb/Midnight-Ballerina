@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Your Order | Midnight Ballerinas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINAS</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display=(document.querySelector('.nav-links').style.display==='flex'?'none':'flex')">Menu</div>
+  </nav>
+
+  <!-- EMPTY CART STATE -->
+  <div id="co-empty-state" style="display:none; text-align:center; padding: 120px 24px;">
+    <div style="font-size:36px; color:var(--gold); opacity:0.4; margin-bottom:20px;">✦</div>
+    <h2 style="font-family:var(--font-display); font-weight:400; margin-bottom:12px;">Your basket is empty</h2>
+    <p style="color:var(--text-secondary); margin-bottom:32px;">Add some products before placing your order.</p>
+    <a href="shop.html" class="btn-neon">Browse the Catalog</a>
+    <br><a href="quiz.html" class="btn-ghost" style="display:inline-block; margin-top:16px;">Take the Stack Quiz</a>
+  </div>
+
+  <!-- PAGE HERO (shown when cart has items) -->
+  <section class="co-hero" id="co-main">
+    <div class="co-hero-eyebrow">Secure Order</div>
+    <h1 class="co-hero-title">Place Your <em>Order</em></h1>
+    <p class="co-hero-sub">Review your basket, enter your details, and send directly to us on WhatsApp. Every order is handled personally.</p>
+  </section>
+
+  <div class="co-layout" id="co-layout">
+
+    <!-- LEFT — Order review + Details form -->
+    <div class="co-left">
+
+      <!-- PANEL 01: Your Order (read-only from basket) -->
+      <div class="co-panel">
+        <div class="co-panel-header">
+          <span class="co-panel-num">01</span>
+          <div>
+            <div class="co-panel-title">Your Order</div>
+            <div class="co-panel-sub">
+              From your basket &nbsp;·&nbsp; <a href="cart.html" style="color:var(--gold); text-decoration:none;">Edit basket →</a>
+            </div>
+          </div>
+        </div>
+        <div id="co-order-lines"></div>
+        <div class="co-order-total-row">
+          <span class="co-order-total-label">Order Total</span>
+          <span class="co-order-total-amount" id="co-order-total">$0</span>
+        </div>
+      </div>
+
+      <!-- PANEL 02: Your Details -->
+      <div class="co-panel">
+        <div class="co-panel-header">
+          <span class="co-panel-num">02</span>
+          <div>
+            <div class="co-panel-title">Your Details</div>
+            <div class="co-panel-sub">Sent securely via WhatsApp — never stored</div>
+          </div>
+        </div>
+
+        <div class="co-form-grid">
+          <div class="co-field">
+            <label class="co-label" for="co-name">Full Name <span class="co-req">*</span></label>
+            <input class="co-input" id="co-name" type="text" placeholder="Your full name" />
+          </div>
+          <div class="co-field">
+            <label class="co-label" for="co-phone">WhatsApp / Phone <span class="co-req">*</span></label>
+            <input class="co-input" id="co-phone" type="tel" placeholder="+1 555 000 0000" />
+          </div>
+          <div class="co-field co-field-full">
+            <label class="co-label" for="co-email">Email Address</label>
+            <input class="co-input" id="co-email" type="email" placeholder="your@email.com" />
+          </div>
+          <div class="co-field co-field-full">
+            <label class="co-label" for="co-address">Delivery Address <span class="co-req">*</span></label>
+            <textarea class="co-input co-textarea" id="co-address" placeholder="Street, city, postcode, country" rows="3"></textarea>
+          </div>
+          <div class="co-field co-field-full">
+            <label class="co-label" for="co-notes">Notes (optional)</label>
+            <textarea class="co-input co-textarea" id="co-notes" placeholder="Bundle questions, special requests..." rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT — Sticky summary + send -->
+    <div class="co-right">
+      <div class="co-summary-wrap">
+
+        <div class="co-summary-header">Order Summary</div>
+
+        <div class="co-summary-lines" id="co-summary-lines"></div>
+
+        <div class="co-summary-total">
+          <span>Total</span>
+          <span class="co-summary-total-amount" id="co-summary-total">$0</span>
+        </div>
+
+        <div id="co-error" class="co-error" style="display:none;"></div>
+
+        <button class="co-wa-btn" onclick="sendToWhatsApp()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Send Order via WhatsApp
+        </button>
+
+        <div class="co-trust">
+          <div class="co-trust-row">✦ &nbsp;Order confirmed personally</div>
+          <div class="co-trust-row">✦ &nbsp;Discreet packaging · 24h dispatch</div>
+          <div class="co-trust-row">✦ &nbsp;HPLC-tested · protocol card included</div>
+        </div>
+
+        <p class="co-legal">Must be 21+. Strictly for laboratory research purposes. Not for human consumption.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINAS</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Basket</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only.
+      Not for human or veterinary use. © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    // ── UPDATE THIS ONE LINE WHEN YOU HAVE YOUR WHATSAPP BUSINESS NUMBER ──
+    // Format: country code + number, no + or spaces. E.g. UK 07700900000 → "447700900000"
+    const WHATSAPP_NUMBER = '447383331226';
+    // ──────────────────────────────────────────────────────────────────────
+
+    function initPage() {
+      var cart  = mbGetCart();
+      var keys  = Object.keys(cart).filter(function(k) { return cart[k] > 0 && MB_CATALOG[k]; });
+
+      if (keys.length === 0) {
+        document.getElementById('co-empty-state').style.display = 'block';
+        document.getElementById('co-main').style.display        = 'none';
+        document.getElementById('co-layout').style.display      = 'none';
+        return;
+      }
+
+      var total = 0;
+
+      // Panel 01 — order lines (read-only)
+      var linesEl = document.getElementById('co-order-lines');
+      linesEl.innerHTML = keys.map(function(k) {
+        var p   = MB_CATALOG[k];
+        var q   = cart[k];
+        var sub = p.price * q;
+        total  += sub;
+        var pill = p.pill
+          ? '<span class="co-' + (p.pill === 'Nasal Spray' ? 'spray' : 'dual') + '-pill">' + p.pill + '</span>'
+          : '';
+        return '<div class="co-order-line">'
+          + '<div class="co-item-dot" style="background:' + p.dot + '; flex-shrink:0;"></div>'
+          + '<div class="co-item-info" style="flex:1;">'
+          +   '<div class="co-item-name">' + p.name + ' ' + pill + '</div>'
+          +   '<div class="co-item-spec">' + p.spec + '</div>'
+          + '</div>'
+          + '<div class="co-order-line-right">'
+          +   '<span class="co-order-line-qty">×' + q + '</span>'
+          +   '<span class="co-order-line-price">$' + sub + '</span>'
+          + '</div>'
+          + '</div>';
+      }).join('');
+
+      document.getElementById('co-order-total').textContent = '$' + total;
+
+      // Right summary column
+      var summaryEl = document.getElementById('co-summary-lines');
+      summaryEl.innerHTML = keys.map(function(k) {
+        var p = MB_CATALOG[k];
+        var q = cart[k];
+        return '<div class="co-summary-line">'
+          + '<span class="co-summary-line-name">' + p.name + ' <span class="co-summary-qty">×' + q + '</span></span>'
+          + '<span class="co-summary-line-price">$' + (p.price * q) + '</span>'
+          + '</div>';
+      }).join('');
+
+      document.getElementById('co-summary-total').textContent = '$' + total;
+    }
+
+    function sendToWhatsApp() {
+      var name    = document.getElementById('co-name').value.trim();
+      var phone   = document.getElementById('co-phone').value.trim();
+      var address = document.getElementById('co-address').value.trim();
+      var email   = document.getElementById('co-email').value.trim();
+      var notes   = document.getElementById('co-notes').value.trim();
+      var errEl   = document.getElementById('co-error');
+
+      if (!name || !phone || !address) {
+        errEl.textContent = 'Please complete your name, phone number, and delivery address before sending.';
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      errEl.style.display = 'none';
+
+      var cart  = mbGetCart();
+      var keys  = Object.keys(cart).filter(function(k) { return cart[k] > 0 && MB_CATALOG[k]; });
+      var total = 0;
+
+      var orderLines = keys.map(function(k) {
+        var p   = MB_CATALOG[k];
+        var q   = cart[k];
+        var sub = p.price * q;
+        total  += sub;
+        return '  • ' + p.name + ' ×' + q + ' — $' + sub;
+      }).join('\n');
+
+      var msg = [
+        '🌙 *NEW ORDER — Midnight Ballerinas*',
+        '',
+        '*Customer*',
+        'Name: ' + name,
+        'Phone: ' + phone,
+        email ? 'Email: ' + email : null,
+        'Address: ' + address,
+        '',
+        '*Order*',
+        orderLines,
+        '',
+        '*Total: $' + total + '*',
+        notes ? '\nNotes: ' + notes : null,
+        '',
+        '_Sent via midnightballerinas.com_'
+      ].filter(function(l) { return l !== null; }).join('\n');
+
+      var a = document.createElement('a');
+      a.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    initPage();
+  </script>
+</body>
+</html>

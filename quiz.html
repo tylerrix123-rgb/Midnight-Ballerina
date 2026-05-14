@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Your Stack | Midnight Ballerinas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINA</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex')">Menu</div>
+  </nav>
+
+  <!-- QUIZ HEADER -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="section-header">
+      <div class="section-eyebrow">The Stack Builder</div>
+      <h2 class="section-title">Define your <span class="italic">protocol</span></h2>
+      <p class="section-sub">Three questions. One bundle. Built for what you actually need this season.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <div class="quiz-shell">
+    <div class="quiz-container" id="quiz-container">
+
+      <!-- Progress -->
+      <div class="quiz-progress">
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="quiz-progress-label" id="progress-label">01 / 03</div>
+      </div>
+
+      <!-- Q1 — multi-select -->
+      <div class="quiz-step" id="step-1">
+        <div class="quiz-question-num">Question One</div>
+        <h3 class="quiz-question">What's your research focus this season?</h3>
+        <p class="quiz-multiselect-hint">Select all that apply</p>
+
+        <button class="quiz-option" onclick="toggleGoal('metabolic', this)">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Get Lean</span>
+            <span class="quiz-option-sub">Metabolic · Body Composition</span>
+          </span>
+          <span class="quiz-option-check">✓</span>
+        </button>
+
+        <button class="quiz-option" onclick="toggleGoal('glow', this)">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Skin & Glow</span>
+            <span class="quiz-option-sub">Tan · Clarity · Radiance</span>
+          </span>
+          <span class="quiz-option-check">✓</span>
+        </button>
+
+        <button class="quiz-option" onclick="toggleGoal('recovery', this)">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Sleep & Recovery</span>
+            <span class="quiz-option-sub">Reset Cortisol · Deep Sleep</span>
+          </span>
+          <span class="quiz-option-check">✓</span>
+        </button>
+
+        <button class="quiz-continue" id="q1-continue" onclick="continueFromQ1()">Continue →</button>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-step" id="step-2" style="display:none;">
+        <div class="quiz-question-num">Question Two</div>
+        <h3 class="quiz-question">What's your timeline?</h3>
+        <button class="quiz-option" onclick="answer('timeline','short')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Right Now</span>
+            <span class="quiz-option-sub">Event in 2–4 weeks</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+        <button class="quiz-option" onclick="answer('timeline','season')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">This Season</span>
+            <span class="quiz-option-sub">8–12 week protocol</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+        <button class="quiz-option" onclick="answer('timeline','longterm')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Long-Term Routine</span>
+            <span class="quiz-option-sub">Year-round maintenance</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-step" id="step-3" style="display:none;">
+        <div class="quiz-question-num">Question Three</div>
+        <h3 class="quiz-question">Your research experience level?</h3>
+        <button class="quiz-option" onclick="answer('level','new')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">First Protocol</span>
+            <span class="quiz-option-sub">Conservative dosing recommended</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+        <button class="quiz-option" onclick="answer('level','intermediate')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Some Experience</span>
+            <span class="quiz-option-sub">Ran 1–3 prior protocols</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+        <button class="quiz-option" onclick="answer('level','advanced')">
+          <span class="quiz-option-label">
+            <span class="quiz-option-title">Advanced</span>
+            <span class="quiz-option-sub">Stacking & cycling familiar</span>
+          </span>
+          <span class="quiz-option-arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- RESULT — Clinical Luxe -->
+    <div class="quiz-result" id="result" style="display:none;">
+      <div class="quiz-result-eyebrow">Your Recommended Bundle</div>
+      <h3 class="quiz-result-name" id="result-name"></h3>
+      <p class="quiz-result-desc" id="result-desc"></p>
+
+      <div class="quiz-result-items" id="result-items"></div>
+
+      <div class="quiz-result-total">
+        <span class="quiz-result-total-label">Bundle Total · Stack Discount Applied</span>
+        <span class="quiz-result-total-amount">
+          <span class="quiz-result-total-strike" id="result-strike"></span>
+          <span id="result-total"></span>
+        </span>
+      </div>
+
+      <button class="btn-rosegold" style="display:block; width:100%; cursor:pointer; border:none;" onclick="addBundleToCart()">Add Bundle to Basket</button>
+      <a href="cart.html" class="btn-ghost" style="display:block; text-align:center; margin-top:12px;">View Basket →</a>
+      <a class="quiz-restart" onclick="restart()">↻ Restart Quiz</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINA</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only.
+      Not for human or veterinary use. © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    const state = { goals: [], timeline: null, level: null, step: 1 };
+    let currentResultItems = [];
+
+    // Bundle catalog — keyed by goal (key field maps to MB_CATALOG; null = not a purchasable item)
+    const bundles = {
+      metabolic: {
+        pillarLabel: 'Lean',
+        name: 'The <em>Main Stage</em> Lean Bundle',
+        desc: 'Our signature metabolic protocol. Triple-receptor GLP-1/GIP/glucagon coverage in a complete 12-week research framework.',
+        items: [
+          { name: 'Retatrutide', dose: '30mg', key: 'retatrutide' },
+          { name: 'BPC-157 / TB-500', dose: '5mg / 5mg', key: 'encore' },
+          { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' },
+          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+        ],
+        retail: 456, bundle: 369
+      },
+      glow: {
+        pillarLabel: 'Glow',
+        name: 'The <em>High-Def</em> Glow Bundle',
+        desc: 'Pigmentation, dermal restoration, and cellular clarity in one stack. Built for the camera and stage lighting.',
+        items: [
+          { name: 'Melanotan-2 Nasal Spray', dose: '10mg — ready to use', key: 'mt2' },
+          { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' },
+          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
+          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+        ],
+        retail: 287, bundle: 232
+      },
+      recovery: {
+        pillarLabel: 'Recovery',
+        name: 'The <em>Closing Time</em> Recovery Bundle',
+        desc: 'Two repair compounds in one vial, plus cellular support. Built for performers who push their body and need the descent to match the climb.',
+        items: [
+          { name: 'BPC-157 / TB-500', dose: '5mg / 5mg', key: 'encore' },
+          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
+          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+        ],
+        retail: 178, bundle: 144
+      }
+    };
+
+    function toggleGoal(value, el) {
+      el.classList.toggle('selected');
+      const idx = state.goals.indexOf(value);
+      if (idx === -1) {
+        state.goals.push(value);
+      } else {
+        state.goals.splice(idx, 1);
+      }
+      const cont = document.getElementById('q1-continue');
+      if (state.goals.length > 0) {
+        cont.classList.add('enabled');
+      } else {
+        cont.classList.remove('enabled');
+      }
+    }
+
+    function continueFromQ1() {
+      if (state.goals.length === 0) return;
+      document.getElementById('step-1').style.display = 'none';
+      state.step = 2;
+      const next = document.getElementById('step-2');
+      next.style.display = 'block';
+      next.style.animation = 'none';
+      next.offsetHeight;
+      next.style.animation = '';
+      setProgress(1);
+    }
+
+    function setProgress(step) {
+      const pct = (step / 3) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-label').innerText =
+        '0' + Math.min(step, 3) + ' / 03';
+    }
+
+    function answer(key, value) {
+      state[key] = value;
+      const cur = document.getElementById('step-' + state.step);
+      if (cur) cur.style.display = 'none';
+      state.step += 1;
+      if (state.step <= 3) {
+        const next = document.getElementById('step-' + state.step);
+        if (next) {
+          next.style.display = 'block';
+          next.style.animation = 'none';
+          next.offsetHeight;
+          next.style.animation = '';
+        }
+        setProgress(state.step - 1);
+      } else {
+        renderResult();
+      }
+    }
+
+    function renderResult() {
+      const goals = state.goals;
+      let bundleName, bundleDesc, items, retail, bundle;
+
+      if (goals.length === 1) {
+        const b = bundles[goals[0]];
+        bundleName = b.name;
+        bundleDesc = b.desc;
+        items = [...b.items];
+        retail = b.retail;
+        bundle = b.bundle;
+
+        if (state.level === 'new') {
+          items = items.slice(0, 2).concat(items.slice(-1));
+          retail = Math.round(retail * 0.78);
+          bundle = Math.round(bundle * 0.78);
+        } else if (state.level === 'advanced' && state.timeline === 'longterm') {
+          items.splice(items.length - 1, 0, { name: 'Cycle Support', dose: '90ct' });
+          retail += 45;
+          bundle += 35;
+        }
+      } else {
+        // Combo bundle — merge items from all selected goals
+        const labels = goals.map(g => bundles[g].pillarLabel);
+        bundleName = `The <em>${labels.join(' × ')}</em> Bundle`;
+        bundleDesc = `A cross-pillar research stack combining ${labels.join(' and ')} protocols. Built for performers who don't pick just one goal.`;
+
+        const seen = new Set();
+        items = [];
+        retail = 0;
+        bundle = 0;
+
+        goals.forEach(g => {
+          const b = bundles[g];
+          b.items
+            .filter(i => !i.name.includes('Bacteriostatic'))
+            .forEach(i => {
+              if (!seen.has(i.name)) {
+                seen.add(i.name);
+                items.push(i);
+              }
+            });
+          retail += b.retail;
+          bundle += b.bundle;
+        });
+
+        // One shared bac water
+        items.push({ name: 'Bacteriostatic Water', dose: '30ml' });
+
+        // Combo discount
+        retail = Math.round(retail * 0.9);
+        bundle = Math.round(bundle * 0.87);
+      }
+
+      // Hide quiz, show result
+      document.getElementById('quiz-container').style.display = 'none';
+      const result = document.getElementById('result');
+      result.style.display = 'block';
+
+      document.getElementById('result-name').innerHTML = bundleName;
+      document.getElementById('result-desc').innerText = bundleDesc;
+
+      const itemsEl = document.getElementById('result-items');
+      itemsEl.innerHTML = items.map(i => `
+        <div class="quiz-result-item">
+          <span class="quiz-result-item-name">${i.name}</span>
+          <span class="quiz-result-item-dose">${i.dose}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('result-strike').innerText = '$' + retail;
+      document.getElementById('result-total').innerText = '$' + bundle;
+
+      // Store for basket
+      currentResultItems = items;
+
+      setProgress(3);
+      document.getElementById('progress-label').innerText = 'Complete';
+    }
+
+    function addBundleToCart() {
+      currentResultItems.forEach(function(item) {
+        if (item.key) mbAddItem(item.key, 1);
+      });
+      window.location.href = 'cart.html';
+    }
+
+    function restart() {
+      state.goals = []; state.timeline = null; state.level = null; state.step = 1;
+      document.querySelectorAll('#step-1 .quiz-option').forEach(el => el.classList.remove('selected'));
+      document.getElementById('q1-continue').classList.remove('enabled');
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+      document.querySelectorAll('.quiz-step').forEach((s, i) => {
+        s.style.display = i === 0 ? 'block' : 'none';
+      });
+      setProgress(1);
+    }
+
+    // Init
+    setProgress(1);
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midnight Ballerinas | Peptide Research Kits for Performers</title>
+  <meta name="description" content="Lyophilised peptide research compounds and complete supply kits curated for the elite performer. Stay clear. Stay lean. Stay in the spotlight." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINAS</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="#proof">Reviews</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex')">Menu</div>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       CINEMATIC HERO
+  ═══════════════════════════════════ -->
+  <section class="hero hero-bg">
+    <!-- Cinematic slideshow panels -->
+    <div class="hero-slides">
+      <div class="hero-slide active" style="background-image:url('images/hero.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('images/stage-lean.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('images/velvet-skin.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('images/mt2-spray.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('images/encore.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('images/crystal-bright.jpg')"></div>
+    </div>
+    <div class="hero-bg-overlay"></div>
+
+    <!-- Slide indicators -->
+    <div class="hero-indicators">
+      <span class="hero-dot active"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+    </div>
+
+    <div class="hero-content-wrap">
+      <div class="hero-eyebrow">Lyophilised Research Compounds</div>
+      <h1>
+        MIDNIGHT<br />
+        <span class="accent">Ballerinas</span>
+      </h1>
+      <p class="lede">
+        Precision peptides for the women who perform after dark.
+        The compound. The pins. The protocol card.<br />Everything in one box.
+      </p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; position:relative; z-index:1;">
+        <a href="quiz.html" class="btn-neon">Build Your Stack</a>
+        <a href="shop.html" class="btn-ghost">View Catalog</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">99.7%</div>
+          <div class="hero-stat-label">Purity Tested</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">Hero Compounds</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24h</div>
+          <div class="hero-stat-label">Discreet Ship</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CINEMA 1 — STAGE LEAN (Retatrutide)
+  ═══════════════════════════════════ -->
+  <div class="cinema-section reveal">
+    <div class="cinema-img">
+      <img src="images/stage-lean.jpg" alt="Stage Lean — Retatrutide" />
+    </div>
+    <div class="cinema-content">
+      <div class="cinema-eyebrow">Lean · 01</div>
+      <h2 class="cinema-name">Stage<br /><em>Lean</em></h2>
+      <div class="cinema-compound">Retatrutide · 30mg · Lyophilised Powder</div>
+      <p class="cinema-desc">
+        Triple-receptor agonist. The new gold standard in metabolic research.
+        Studied across GLP-1, GIP, and glucagon pathways — three mechanisms,
+        one vial. For performers preparing for season, residency, or the camera.
+      </p>
+      <div class="cinema-price-row">
+        <div class="cinema-price"><span class="currency">$</span>248</div>
+        <div class="cinema-badge">Best Seller</div>
+      </div>
+      <div class="cinema-actions">
+        <a href="product.html?id=retatrutide" class="btn-neon">View Product</a>
+        <a href="quiz.html" class="btn-ghost">Build a Bundle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       CINEMA 2 — VELVET SKIN (GHK-Cu)
+  ═══════════════════════════════════ -->
+  <div class="cinema-section reverse reveal">
+    <div class="cinema-img">
+      <img src="images/velvet-skin.jpg" alt="Velvet Skin — GHK-Cu" />
+    </div>
+    <div class="cinema-content">
+      <div class="cinema-eyebrow">Glow · 02</div>
+      <h2 class="cinema-name">Velvet<br /><em>Skin</em></h2>
+      <div class="cinema-compound">GHK-Cu Glow Blend · 50mg · Lyophilised Powder</div>
+      <p class="cinema-desc">
+        Collagen synthesis. Dermal restoration. Wound-healing pathways.
+        GHK-Cu is the anchor of the Glow Stack — studied for its role
+        in skin regeneration and tissue remodelling at a cellular level.
+        Stage lighting hides nothing. This does.
+      </p>
+      <div class="cinema-price-row">
+        <div class="cinema-price"><span class="currency">$</span>95</div>
+        <div class="cinema-badge">Glow Stack</div>
+      </div>
+      <div class="cinema-actions">
+        <a href="product.html?id=ghkcu" class="btn-neon">View Product</a>
+        <a href="quiz.html" class="btn-ghost">Build a Bundle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       CINEMA 3 — SKIN GLOW MT-2 (Melanotan II)
+  ═══════════════════════════════════ -->
+  <div class="cinema-section reveal">
+    <div class="cinema-img">
+      <img src="images/mt2-spray.jpg" alt="Skin Glow MT-2 — Melanotan II" />
+    </div>
+    <div class="cinema-content">
+      <div class="cinema-eyebrow">Glow · 03</div>
+      <h2 class="cinema-name">Skin Glow<br /><em>MT-2</em></h2>
+      <div class="cinema-compound">Melanotan II · 10mg · Nasal Spray Solution</div>
+      <div class="cinema-spray-badge">✦ No Needles · No Reconstitution · Ready to Use</div>
+      <p class="cinema-desc">
+        Melanotan-2 studied for melanocortin receptor action and
+        pigmentation depth — delivered pre-mixed, ready-to-use.
+        The only MT-2 nasal spray in the kit. Pairs with GHK-Cu
+        Glow Blend in the Glow Stack for compound effect under
+        stage and UV light.
+      </p>
+      <div class="cinema-price-row">
+        <div class="cinema-price"><span class="currency">$</span>89</div>
+        <div class="cinema-badge">Glow Stack</div>
+      </div>
+      <div class="cinema-actions">
+        <a href="product.html?id=mt2" class="btn-neon">View Product</a>
+        <a href="quiz.html" class="btn-ghost">Build a Bundle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       CINEMA 4 — ENCORE (BPC-157)
+  ═══════════════════════════════════ -->
+  <div class="cinema-section reverse reveal">
+    <div class="cinema-img">
+      <img src="images/encore.jpg" alt="Encore — BPC-157 / TB-500" style="object-position: center 35%;" />
+    </div>
+    <div class="cinema-content">
+      <div class="cinema-eyebrow">Recovery · 04</div>
+      <h2 class="cinema-name"><em>Encore</em></h2>
+      <div class="cinema-compound">BPC-157 / TB-500 · 5mg / 5mg · Lyophilised Powder</div>
+      <p class="cinema-desc">
+        Two recovery compounds. One vial. BPC-157 studied for soft-tissue
+        and gut healing pathways. TB-500 studied for systemic tissue repair
+        and flexibility. Stacked together for performers who push hard
+        and need the recovery to match the output.
+        The one you reach for after the lights come down.
+      </p>
+      <div class="cinema-price-row">
+        <div class="cinema-price"><span class="currency">$</span>89</div>
+        <div class="cinema-badge">Recovery</div>
+      </div>
+      <div class="cinema-actions">
+        <a href="product.html?id=encore" class="btn-neon">View Product</a>
+        <a href="quiz.html" class="btn-ghost">Build a Bundle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       CINEMA 5 — CRYSTAL BRIGHT (L-Glutathione)
+  ═══════════════════════════════════ -->
+  <div class="cinema-section reveal">
+    <div class="cinema-img">
+      <img src="images/crystal-bright.jpg" alt="Crystal Bright — L-Glutathione" style="object-position: center 40%;" />
+    </div>
+    <div class="cinema-content">
+      <div class="cinema-eyebrow">Glow · 05</div>
+      <h2 class="cinema-name">Crystal<br /><em>Bright</em></h2>
+      <div class="cinema-compound">L-Glutathione · 1500mg · Lyophilised Powder</div>
+      <p class="cinema-desc">
+        The master antioxidant. Studied for cellular clarity, oxidative stress
+        reduction, and skin luminosity at a systemic level. Glutathione works
+        from the inside out — the compound that makes stage lighting work
+        for you, not against you. The finishing layer of the Glow Stack.
+      </p>
+      <div class="cinema-price-row">
+        <div class="cinema-price"><span class="currency">$</span>78</div>
+        <div class="cinema-badge">Glow Stack</div>
+      </div>
+      <div class="cinema-actions">
+        <a href="product.html?id=glutathione" class="btn-neon">View Product</a>
+        <a href="quiz.html" class="btn-ghost">Build a Bundle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       GLOW BUNDLE FEATURE — CLINICAL LUXE
+  ═══════════════════════════════════ -->
+  <section class="bundle-feature reveal">
+    <div class="bundle-feature-inner">
+      <div>
+        <div class="bundle-feature-eyebrow">Featured Protocol</div>
+        <h2>The <em>High-Def</em> Glow Bundle</h2>
+        <p>The Glow Stack — three compounds, one outcome. Pigmentation, collagen,
+          and cellular clarity in a single 12-week research framework.
+          Everything HPLC-tested. Everything lyophilised. Protocol card included.</p>
+        <ul class="bundle-feature-list">
+          <li>Melanotan-2 10mg <span>Pigmentation</span></li>
+          <li>GHK-Cu Copper Peptide 50mg <span>Collagen</span></li>
+          <li>L-Glutathione 1500mg <span>Clarity</span></li>
+          <li>Protocol Card <span>Reconstitution Guide</span></li>
+        </ul>
+        <a href="quiz.html" class="btn-rosegold">Build My Protocol</a>
+      </div>
+      <div class="bundle-feature-card">
+        <div class="bundle-feature-card-tag">Bundle Price · Save $55</div>
+        <div class="bundle-feature-card-name">The High-Def<br />Glow Bundle</div>
+        <div class="bundle-feature-card-price">$232</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SOCIAL PROOF
+  ═══════════════════════════════════ -->
+  <section class="proof reveal" id="proof">
+    <p class="proof-quote">
+      The cleanest sourcing I've found. The kit had everything — compound, pins, wipes, and an actual
+      protocol card. No second order. No guesswork.
+    </p>
+    <div class="proof-attr"><span>★★★★★</span> &nbsp; Verified Researcher · Las Vegas</div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       QUIZ CTA
+  ═══════════════════════════════════ -->
+  <section class="section text-center reveal">
+    <div class="section-eyebrow">Don't Guess. Build.</div>
+    <h2 class="section-title">Take the <span class="italic">3-question</span> stack quiz</h2>
+    <p class="section-sub">Three questions. One bundle. Dosing windows already mapped, supplies already suggested.</p>
+    <div class="mt-4">
+      <a href="quiz.html" class="btn-neon">Start Quiz</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINAS</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+      <a href="checkout.html">Order</a>
+      <a href="#">Wholesale</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only. Not for human or
+      veterinary use. Not for diagnostic, therapeutic, or investigational use. Must be 21+ to purchase.
+      © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // ── Cinematic Hero Slideshow ──────────────────────────
+    (function () {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots   = document.querySelectorAll('.hero-dot');
+      let current  = 0;
+      let timer;
+
+      // Preload all images so first crossfade is instant
+      slides.forEach(s => {
+        const url = s.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+        const img = new Image(); img.src = url;
+      });
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo(current + 1); }
+
+      // Auto-advance every 3.5 s (accounts for 1.8 s fade)
+      function start() { timer = setInterval(next, 3500); }
+      function reset()  { clearInterval(timer); start(); }
+
+      // Dot clicks
+      dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); reset(); }));
+
+      start();
+    })();
+  </script>
+</body>
+</html>

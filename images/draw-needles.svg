@@ -1,0 +1,57 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101a15"/><stop offset="100%" stop-color="#14101a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#52B788" stop-opacity="0.32"/><stop offset="100%" stop-color="#52B788" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="230" rx="120" ry="140" fill="url(#glow)"/>
+  <!-- Five draw needles in a fan -->
+  <!-- Needle 1 -->
+  <g transform="rotate(-16, 200, 260)">
+    <rect x="188" y="108" width="18" height="18" rx="3" fill="#3a7a58" opacity="0.6"/>
+    <rect x="191" y="126" width="12" height="10" rx="2" fill="rgba(255,255,255,0.12)"/>
+    <rect x="193" y="136" width="8" height="95" rx="2" fill="rgba(255,255,255,0.14)"/>
+    <line x1="197" y1="231" x2="197" y2="300" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+    <polygon points="197,300 195.5,318 198.5,318" fill="rgba(255,255,255,0.4)"/>
+  </g>
+  <!-- Needle 2 -->
+  <g transform="rotate(-8, 200, 260)">
+    <rect x="188" y="105" width="18" height="18" rx="3" fill="#3a7a58" opacity="0.7"/>
+    <rect x="191" y="123" width="12" height="10" rx="2" fill="rgba(255,255,255,0.14)"/>
+    <rect x="193" y="133" width="8" height="95" rx="2" fill="rgba(255,255,255,0.16)"/>
+    <line x1="197" y1="228" x2="197" y2="300" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <polygon points="197,300 195.5,320 198.5,320" fill="rgba(255,255,255,0.45)"/>
+  </g>
+  <!-- Needle 3 (front centre) -->
+  <rect x="188" y="100" width="22" height="22" rx="4" fill="#52B788"/>
+  <rect x="188" y="100" width="22" height="9" rx="4" fill="rgba(255,255,255,0.25)"/>
+  <rect x="192" y="122" width="14" height="12" rx="2" fill="rgba(255,255,255,0.18)"/>
+  <rect x="194" y="134" width="10" height="98" rx="2.5" fill="rgba(255,255,255,0.18)"/>
+  <line x1="199" y1="232" x2="199" y2="308" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <polygon points="199,308 197,330 201,330" fill="rgba(255,255,255,0.7)"/>
+  <!-- Needle 4 -->
+  <g transform="rotate(8, 200, 260)">
+    <rect x="188" y="105" width="18" height="18" rx="3" fill="#3a7a58" opacity="0.7"/>
+    <rect x="191" y="123" width="12" height="10" rx="2" fill="rgba(255,255,255,0.14)"/>
+    <rect x="193" y="133" width="8" height="95" rx="2" fill="rgba(255,255,255,0.15)"/>
+    <line x1="197" y1="228" x2="197" y2="300" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <polygon points="197,300 195.5,320 198.5,320" fill="rgba(255,255,255,0.42)"/>
+  </g>
+  <!-- Needle 5 -->
+  <g transform="rotate(16, 200, 260)">
+    <rect x="188" y="108" width="18" height="18" rx="3" fill="#3a7a58" opacity="0.6"/>
+    <rect x="191" y="126" width="12" height="10" rx="2" fill="rgba(255,255,255,0.12)"/>
+    <rect x="193" y="136" width="8" height="95" rx="2" fill="rgba(255,255,255,0.13)"/>
+    <line x1="197" y1="231" x2="197" y2="300" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+    <polygon points="197,300 195.5,318 198.5,318" fill="rgba(255,255,255,0.36)"/>
+  </g>
+  <text x="200" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="4" fill="#52B788" opacity="0.92">DRAW SET</text>
+  <text x="200" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.38)" letter-spacing="2">21G · BLUNT TIP · 5-PACK</text>
+  <circle cx="128" cy="148" r="1.5" fill="#52B788" opacity="0.5"/>
+  <circle cx="272" cy="130" r="1" fill="white" opacity="0.28"/>
+  <circle cx="122" cy="310" r="1" fill="#52B788" opacity="0.35"/>
+</svg>

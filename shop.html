@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog | Midnight Ballerinas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINA</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex')">Menu</div>
+  </nav>
+
+  <!-- CATALOG HEADER -->
+  <section class="section" style="padding-bottom: 30px;">
+    <div class="section-header">
+      <div class="section-eyebrow">The Catalog</div>
+      <h2 class="section-title">Five <span class="italic">hero compounds</span></h2>
+      <p class="section-sub">Lyophilised powder. HPLC-tested. Ships with everything you need —
+        or build the complete kit by adding supplies below.</p>
+    </div>
+  </section>
+
+  <!-- FILTER PILLS -->
+  <div class="filter-pills">
+    <button class="filter-pill active" data-filter="all">All · 10</button>
+    <button class="filter-pill" data-filter="glow">Glow · 3</button>
+    <button class="filter-pill" data-filter="lean">Lean · 1</button>
+    <button class="filter-pill" data-filter="recovery">Recovery · 1</button>
+    <button class="filter-pill" data-filter="supplies">Supplies · 5</button>
+  </div>
+
+  <!-- CATALOG GRID -->
+  <section class="section" style="padding-top: 0;">
+    <div class="product-grid" id="grid">
+
+      <!-- GLOW (3) -->
+      <a href="product.html?id=ghkcu" class="product-card" data-cat="glow">
+        <div class="product-img">
+          <img src="images/velvet-skin.jpg" alt="Velvet Skin" style="object-position: center center;" />
+        </div>
+        <div class="product-tag">Glow</div>
+        <div class="product-name">Velvet Skin</div>
+        <p class="product-desc">Boosts collagen, firms skin, and helps spots and lines heal faster. The skin compound that works from the inside out.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>95</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('ghkcu',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=mt2" class="product-card" data-cat="glow">
+        <div class="product-img">
+          <img src="images/mt2-spray.jpg" alt="Skin Glow MT-2" style="object-position: center center;" />
+        </div>
+        <div class="product-tag">Glow</div>
+        <div class="product-name">Skin Glow MT-2</div>
+        <span class="product-badge-spray">No needles · Nasal Spray</span>
+        <p class="product-desc">Gives you a deep, even tan without the sun. No needles — just a nasal spray. Colour builds naturally over 1–2 weeks.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>89</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('mt2',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=glutathione" class="product-card" data-cat="glow">
+        <div class="product-img">
+          <img src="images/crystal-bright.jpg" alt="Crystal Bright" style="object-position: center center;" />
+        </div>
+        <div class="product-tag">Glow</div>
+        <div class="product-name">Crystal Bright</div>
+        <p class="product-desc">Brightens skin tone, fades dark spots, and makes your complexion look cleaner and more even. Works systemically — affects your whole skin at once.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>78</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('glutathione',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <!-- LEAN (1) -->
+      <a href="product.html?id=retatrutide" class="product-card" data-cat="lean">
+        <div class="product-img">
+          <img src="images/stage-lean.jpg" alt="Stage Lean" style="object-position: center center;" />
+        </div>
+        <div class="product-tag">Lean</div>
+        <div class="product-name">Stage Lean</div>
+        <p class="product-desc">Reduces appetite, makes burning fat effortless, and keeps your energy sustained. One injection a week. Stronger than Ozempic.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>248</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('retatrutide',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <!-- RECOVERY (1) -->
+      <a href="product.html?id=encore" class="product-card" data-cat="recovery">
+        <div class="product-img">
+          <img src="images/encore.jpg" alt="Encore" style="object-position: center 30%;" />
+        </div>
+        <div class="product-tag">Recovery</div>
+        <div class="product-name">Encore</div>
+        <span class="product-badge-dual">Dual Compound · BPC-157 + TB-500</span>
+        <p class="product-desc">Cuts recovery time, eases soreness, and heals injuries faster. Two peptides in one — for performers who push hard every night.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>89</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('encore',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <!-- SUPPLIES (5) -->
+      <a href="product.html?id=pins" class="product-card" data-cat="supplies">
+        <div class="product-img">
+          <img src="images/insulin-pins.svg" alt="Stage Pins" />
+        </div>
+        <div class="product-tag">Supplies</div>
+        <div class="product-name">Stage Pins</div>
+        <p class="product-desc">Fine 29g insulin syringes for injecting your compounds. Short, thin needle — barely feel it when done right. 10 per pack.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>18</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('pins',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=swabs" class="product-card" data-cat="supplies">
+        <div class="product-img">
+          <img src="images/prep-pads.svg" alt="Prep Swabs" />
+        </div>
+        <div class="product-tag">Supplies</div>
+        <div class="product-name">Prep Swabs</div>
+        <p class="product-desc">Sterile alcohol wipes for cleaning your injection site and vial top before every use. Non-negotiable part of the kit. 50 per pack.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>14</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('swabs',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=draw" class="product-card" data-cat="supplies">
+        <div class="product-img">
+          <img src="images/draw-needles.svg" alt="Draw Set" />
+        </div>
+        <div class="product-tag">Supplies</div>
+        <div class="product-name">Draw Set</div>
+        <p class="product-desc">Blunt needles for mixing your compound with bacteriostatic water. Use these to mix, then swap to your insulin pin to inject. 5 per pack.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>16</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('draw',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=sharps" class="product-card" data-cat="supplies">
+        <div class="product-img">
+          <img src="images/sharps-container.svg" alt="Stage Safe" />
+        </div>
+        <div class="product-tag">Supplies</div>
+        <div class="product-name">Stage Safe</div>
+        <p class="product-desc">Lockable container for used needles. Matte black, no markings — looks like nothing. Never put sharps in the bin.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>22</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('sharps',this)">Add to Basket</button>
+        </div>
+      </a>
+
+      <a href="product.html?id=pouch" class="product-card" data-cat="supplies">
+        <div class="product-img">
+          <img src="images/night-pouch.svg" alt="Night Kit" />
+        </div>
+        <div class="product-tag">Supplies</div>
+        <div class="product-name">Night Kit</div>
+        <p class="product-desc">Insulated pouch that keeps your full kit together and your compounds stable. No external branding. Built for late nights and long trips.</p>
+        <div class="product-meta">
+          <div class="product-price"><span class="currency">$</span>35</div>
+          <button class="product-add-btn" onclick="event.preventDefault();event.stopPropagation();addToCart('pouch',this)">Add to Basket</button>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- WHAT'S IN THE BOX -->
+  <section class="section reveal" style="background: var(--bg-elevated); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="section-header">
+      <div class="section-eyebrow">Complete Kit</div>
+      <h2 class="section-title">Everything in <span class="italic">one box</span></h2>
+      <p class="section-sub">Add the compound. Add the supplies. We pack a protocol card with every order — reconstitution ratios, injection rotation, storage guide. No second orders. No guesswork.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-width:700px; margin:0 auto;">
+      <span style="background:rgba(247,37,133,0.08); border:1px solid rgba(247,37,133,0.2); border-radius:30px; padding:10px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--neon-pink-soft);">✦ Lyophilised Powder</span>
+      <span style="background:rgba(247,37,133,0.08); border:1px solid rgba(247,37,133,0.2); border-radius:30px; padding:10px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--neon-pink-soft);">✦ Protocol Card</span>
+      <span style="background:rgba(247,37,133,0.08); border:1px solid rgba(247,37,133,0.2); border-radius:30px; padding:10px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--neon-pink-soft);">✦ HPLC Test Report</span>
+      <span style="background:rgba(247,37,133,0.08); border:1px solid rgba(247,37,133,0.2); border-radius:30px; padding:10px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--neon-pink-soft);">✦ Discreet Packaging</span>
+      <span style="background:rgba(247,37,133,0.08); border:1px solid rgba(247,37,133,0.2); border-radius:30px; padding:10px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--neon-pink-soft);">✦ 24h Dispatch</span>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="proof">
+    <p class="proof-quote">Third-party HPLC tested. Discreet packaging. Researchers verified.</p>
+    <div class="proof-attr"><span>ISO-9001</span> &nbsp; Sourced from a single accredited facility</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINA</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+      <a href="checkout.html">Order</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only. Not for human or
+      veterinary use. © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    // Filter pills
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('#grid .product-card');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        const f = pill.dataset.filter;
+        cards.forEach((c) => {
+          const show = f === 'all' || c.dataset.cat === f;
+          c.style.display = show ? 'flex' : 'none';
+        });
+      });
+    });
+
+    // Add to basket with flash feedback
+    function addToCart(key, btn) {
+      mbAddItem(key);
+      btn.textContent = '✓ Added';
+      btn.classList.add('product-add-btn--added');
+      setTimeout(() => {
+        btn.textContent = 'Add to Basket';
+        btn.classList.remove('product-add-btn--added');
+      }, 1600);
+    }
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1522"/><stop offset="100%" stop-color="#14101a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="38%">
+      <stop offset="0%" stop-color="#C9828D" stop-opacity="0.3"/><stop offset="100%" stop-color="#9B5DE5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pouch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(30,20,40,0.95)"/><stop offset="100%" stop-color="rgba(20,16,26,0.9)"/>
+    </linearGradient>
+    <linearGradient id="zipper" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7a4a54"/><stop offset="50%" stop-color="#C9828D"/><stop offset="100%" stop-color="#7a4a54"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0.01)"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="240" rx="130" ry="145" fill="url(#glow)"/>
+  <!-- Pouch body -->
+  <rect x="118" y="150" width="164" height="190" rx="14" fill="url(#pouch)" stroke="rgba(201,130,141,0.2)" stroke-width="1.5"/>
+  <!-- Sheen / gloss on pouch -->
+  <rect x="118" y="150" width="164" height="190" rx="14" fill="url(#sheen)"/>
+  <!-- Quilted lines (luxury look) -->
+  <line x1="118" y1="200" x2="282" y2="200" stroke="rgba(201,130,141,0.12)" stroke-width="1"/>
+  <line x1="118" y1="250" x2="282" y2="250" stroke="rgba(201,130,141,0.12)" stroke-width="1"/>
+  <line x1="118" y1="300" x2="282" y2="300" stroke="rgba(201,130,141,0.12)" stroke-width="1"/>
+  <line x1="168" y1="150" x2="168" y2="340" stroke="rgba(201,130,141,0.08)" stroke-width="1"/>
+  <line x1="232" y1="150" x2="232" y2="340" stroke="rgba(201,130,141,0.08)" stroke-width="1"/>
+  <!-- Zipper track -->
+  <rect x="118" y="148" width="164" height="14" rx="7" fill="url(#zipper)"/>
+  <rect x="118" y="148" width="164" height="6" rx="6" fill="rgba(255,255,255,0.18)"/>
+  <!-- Zipper pull -->
+  <rect x="194" y="140" width="12" height="18" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="197" y="138" width="6" height="4" rx="1" fill="rgba(255,255,255,0.5)"/>
+  <!-- MB monogram on pouch -->
+  <text x="200" y="250" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="38" fill="rgba(201,130,141,0.55)">MB</text>
+  <!-- Handle strap -->
+  <path d="M 155 150 Q 155 130 175 128 L 225 128 Q 245 130 245 150" fill="none" stroke="rgba(201,130,141,0.4)" stroke-width="5" stroke-linecap="round"/>
+  <!-- Small logo plate -->
+  <rect x="180" y="278" width="40" height="18" rx="3" fill="rgba(201,130,141,0.3)"/>
+  <text x="200" y="290" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(255,255,255,0.55)" letter-spacing="1.5">M · B</text>
+  <text x="200" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="4" fill="#C9828D" opacity="0.92">NIGHT KIT</text>
+  <text x="200" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.38)" letter-spacing="2">INSULATED PEPTIDE TRAVEL POUCH</text>
+  <circle cx="125" cy="165" r="1.5" fill="#C9828D" opacity="0.5"/>
+  <circle cx="275" cy="148" r="1" fill="white" opacity="0.28"/>
+  <circle cx="120" cy="310" r="1" fill="#9B5DE5" opacity="0.4"/>
+  <circle cx="278" cy="295" r="1.5" fill="white" opacity="0.2"/>
+</svg>

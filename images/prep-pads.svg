@@ -1,0 +1,48 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1522"/><stop offset="100%" stop-color="#14101a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#C9828D" stop-opacity="0.28"/><stop offset="100%" stop-color="#C9828D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/><stop offset="40%" stop-color="rgba(255,255,255,0.22)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.06)"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="230" rx="130" ry="140" fill="url(#glow)"/>
+  <!-- Stack of foil packets -->
+  <!-- Packet 3 (back) -->
+  <g transform="rotate(-4, 200, 240)" opacity="0.45">
+    <rect x="128" y="155" width="144" height="110" rx="8" fill="url(#foil)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="200" y1="155" x2="200" y2="265" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="128" y1="210" x2="272" y2="210" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  </g>
+  <!-- Packet 2 (mid) -->
+  <g transform="rotate(0, 200, 240)" opacity="0.65">
+    <rect x="132" y="170" width="136" height="106" rx="8" fill="url(#foil)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <line x1="200" y1="170" x2="200" y2="276" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="132" y1="223" x2="268" y2="223" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  </g>
+  <!-- Packet 1 (front, main) -->
+  <rect x="136" y="185" width="128" height="100" rx="9" fill="url(#foil)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+  <!-- Foil texture lines -->
+  <line x1="200" y1="185" x2="200" y2="285" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <line x1="136" y1="235" x2="264" y2="235" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <!-- Crimp edges -->
+  <rect x="136" y="185" width="128" height="10" rx="5" fill="rgba(255,255,255,0.12)"/>
+  <rect x="136" y="275" width="128" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>
+  <!-- Brand text on packet -->
+  <text x="200" y="225" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" font-weight="700" fill="white" opacity="0.7">MB</text>
+  <text x="200" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(255,255,255,0.45)" letter-spacing="2">PREP SWAB</text>
+  <!-- Shine reflection -->
+  <ellipse cx="162" cy="202" rx="18" ry="8" fill="rgba(255,255,255,0.08)" transform="rotate(-30,162,202)"/>
+  <!-- Label below -->
+  <text x="200" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="4" fill="#C9828D" opacity="0.92">PREP SWABS</text>
+  <text x="200" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.38)" letter-spacing="2">ALCOHOL · 70% IPA · 50-PACK</text>
+  <circle cx="128" cy="155" r="1.5" fill="#C9828D" opacity="0.5"/>
+  <circle cx="272" cy="145" r="1" fill="white" opacity="0.28"/>
+  <circle cx="120" cy="300" r="1" fill="#e0a8b4" opacity="0.38"/>
+</svg>

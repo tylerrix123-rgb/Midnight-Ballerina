@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Image originals backup — don't ship these
+images/_originals_backup/
+
+# Logs
+*.log

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Midnight Ballerinas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINAS</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex')">Menu</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="section" style="padding-bottom: 0; padding-top: 80px;">
+    <div class="section-header">
+      <div class="section-eyebrow">Got Questions</div>
+      <h2 class="section-title">We've got <span class="italic">answers</span></h2>
+      <p class="section-sub">Everything you need to know before you order.</p>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="section" style="max-width: 760px; margin: 0 auto; padding-top: 20px;">
+
+    <div class="faq-group">
+      <div class="faq-group-label">Ordering & Payment</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I place an order?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Browse the catalog, use the Stack Quiz to find your bundle, then head to the checkout page. Fill in your name, delivery address, and contact number — your order details will be sent directly to our WhatsApp where we'll confirm and arrange payment.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What payment methods do you accept?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Payment is arranged directly via WhatsApp after your order is confirmed. We accept bank transfer, and other methods discussed at the time of order. All transactions are handled securely and personally.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I order a custom bundle not shown on the site?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Absolutely. Message us directly on WhatsApp and we'll put together a custom stack based on your research goals. Everything is flexible — quantities, combinations, and protocol support.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">Shipping & Delivery</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does delivery take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Orders are dispatched within 24 hours of payment confirmation. Delivery timelines depend on your location — we'll confirm an estimated delivery window when your order is processed via WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is packaging discreet?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. All orders ship in plain, unmarked packaging with no branding on the outside. There is nothing on the exterior that identifies the contents or sender.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you ship internationally?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>We ship to most countries. International orders may be subject to local customs regulations — it is the buyer's responsibility to ensure research compounds are legal to import in their jurisdiction. Message us before ordering if you're unsure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">The Products</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does "lyophilised powder" mean?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Lyophilised means freeze-dried. The peptide compound is dried to a stable powder that stays potent at room temperature during shipping. Before use in a research setting, it is reconstituted with bacteriostatic water — a process covered step-by-step on your protocol card included with every order.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is the Melanotan II really a nasal spray — no needles needed?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. Our Melanotan II comes as a pre-mixed nasal spray solution — ready to use straight from the bottle. No reconstitution, no syringes required. It's one of the key reasons researchers choose our Glow Stack over competitors.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How is purity verified?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Every batch is third-party HPLC tested at a single ISO-9001 accredited facility. A copy of the test report is included with every order so you can verify purity before use.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What supplies do I need to get started?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>For lyophilised compounds you'll need insulin syringes, drawing needles, bacteriostatic water, and alcohol prep pads — all available in our Supplies section and included in our complete kits. For the Melanotan II nasal spray, nothing extra is needed — it arrives ready to use.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How should I store the compounds?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Lyophilised powder should be stored in a cool, dry place away from direct sunlight. Once reconstituted, store in the fridge and use within 30 days. The protocol card included in every order covers storage in full detail.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">Legal & Research Use</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does "research use only" mean?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>All products sold by Midnight Ballerinas are intended strictly for laboratory research purposes. They are not approved for human consumption, therapeutic use, or veterinary use. You must be 21 or over to purchase. By ordering, you confirm you are purchasing for legitimate research purposes in accordance with the laws of your jurisdiction.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are these compounds legal?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>The legal status of peptide research compounds varies by country. It is the buyer's responsibility to confirm the legal status of each compound in their location before purchasing. We do not provide legal advice.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Still have questions CTA -->
+    <div style="text-align:center; padding: 60px 0 40px;">
+      <div class="section-eyebrow" style="margin-bottom: 16px;">Still have questions?</div>
+      <p style="color: var(--text-secondary); margin-bottom: 28px; font-size: 14px;">We're one message away. Every order is handled personally.</p>
+      <a href="checkout.html" class="btn-neon">Place an Order</a>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINAS</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="faq.html">FAQ</a>
+      <a href="checkout.html">Order</a>
+    </div>
+    <div class="footer-fineprint">
+      All products listed on this site are sold strictly for laboratory research purposes only. Not for human or
+      veterinary use. © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      // Open clicked if it was closed
+      if (!isOpen) item.classList.add('open');
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

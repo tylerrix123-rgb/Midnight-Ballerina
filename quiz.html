@@ -187,8 +187,7 @@
         items: [
           { name: 'Retatrutide', dose: '30mg', key: 'retatrutide' },
           { name: 'BPC-157 / TB-500', dose: '5mg / 5mg', key: 'encore' },
-          { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' },
-          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+          { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' }
         ],
         retail: 269, bundle: 219
       },
@@ -199,8 +198,7 @@
         items: [
           { name: 'Melanotan-2 Nasal Spray', dose: '10mg — ready to use', key: 'mt2' },
           { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' },
-          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
-          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' }
         ],
         retail: 149, bundle: 119
       },
@@ -210,8 +208,7 @@
         desc: 'Cuts soreness, speeds up healing, and helps you bounce back faster after hard nights. Less aching, more doing.',
         items: [
           { name: 'BPC-157 / TB-500', dose: '5mg / 5mg', key: 'encore' },
-          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
-          { name: 'Bacteriostatic Water', dose: '30ml', key: null }
+          { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' }
         ],
         retail: 94, bundle: 75
       }
@@ -287,10 +284,6 @@
           items = items.slice(0, 2).concat(items.slice(-1));
           retail = Math.round(retail * 0.78);
           bundle = Math.round(bundle * 0.78);
-        } else if (state.level === 'advanced' && state.timeline === 'longterm') {
-          items.splice(items.length - 1, 0, { name: 'Cycle Support', dose: '90ct' });
-          retail += 45;
-          bundle += 35;
         }
       } else {
         // Combo bundle — merge items from all selected goals
@@ -305,20 +298,15 @@
 
         goals.forEach(g => {
           const b = bundles[g];
-          b.items
-            .filter(i => !i.name.includes('Bacteriostatic'))
-            .forEach(i => {
-              if (!seen.has(i.name)) {
-                seen.add(i.name);
-                items.push(i);
-              }
-            });
+          b.items.forEach(i => {
+            if (!seen.has(i.name)) {
+              seen.add(i.name);
+              items.push(i);
+            }
+          });
           retail += b.retail;
           bundle += b.bundle;
         });
-
-        // One shared bac water
-        items.push({ name: 'Bacteriostatic Water', dose: '30ml' });
 
         // Combo discount
         retail = Math.round(retail * 0.9);

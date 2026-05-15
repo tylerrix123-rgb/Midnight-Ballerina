@@ -359,7 +359,7 @@
       document.getElementById('pp-compound-line').textContent = cat.spec;
       document.getElementById('pp-tagline').textContent   = det.tagline;
       document.getElementById('pp-desc').textContent      = det.desc;
-      document.getElementById('pp-price').innerHTML       = '<span style="font-size:16px;color:var(--text-muted);vertical-align:super;margin-right:2px;">$</span>' + cat.price;
+      document.getElementById('pp-price').innerHTML       = '<span style="font-size:16px;color:var(--text-muted);vertical-align:super;margin-right:2px;">£</span>' + cat.price;
 
       // Pills
       var pillsEl = document.getElementById('pp-pills');
@@ -393,7 +393,7 @@
             +   '<div class="pp-stack-card-tag">' + sd.eyebrow + '</div>'
             +   '<div class="pp-stack-card-name">' + sc.name + '</div>'
             +   '<div class="pp-stack-card-spec">' + sc.spec + '</div>'
-            +   '<div class="pp-stack-card-price">$' + sc.price + '</div>'
+            +   '<div class="pp-stack-card-price">£' + sc.price + '</div>'
             + '</div>'
             + '</a>';
         }).join('');

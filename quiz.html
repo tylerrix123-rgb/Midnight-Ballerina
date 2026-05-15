@@ -190,7 +190,7 @@
           { name: 'GHK-Cu Glow Blend', dose: '50mg', key: 'ghkcu' },
           { name: 'Bacteriostatic Water', dose: '30ml', key: null }
         ],
-        retail: 456, bundle: 369
+        retail: 269, bundle: 219
       },
       glow: {
         pillarLabel: 'Glow',
@@ -202,7 +202,7 @@
           { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
           { name: 'Bacteriostatic Water', dose: '30ml', key: null }
         ],
-        retail: 287, bundle: 232
+        retail: 149, bundle: 119
       },
       recovery: {
         pillarLabel: 'Recovery',
@@ -213,7 +213,7 @@
           { name: 'L-Glutathione', dose: '1500mg', key: 'glutathione' },
           { name: 'Bacteriostatic Water', dose: '30ml', key: null }
         ],
-        retail: 178, bundle: 144
+        retail: 94, bundle: 75
       }
     };
 
@@ -341,8 +341,8 @@
         </div>
       `).join('');
 
-      document.getElementById('result-strike').innerText = '$' + retail;
-      document.getElementById('result-total').innerText = '$' + bundle;
+      document.getElementById('result-strike').innerText = '£' + retail;
+      document.getElementById('result-total').innerText = '£' + bundle;
 
       // Store for basket
       currentResultItems = items;

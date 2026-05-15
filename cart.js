@@ -11,52 +11,52 @@ const MB_CATALOG = {
   retatrutide: {
     name: 'Stage Lean',
     spec: 'Retatrutide · 30mg · Lyophilised Powder',
-    price: 248, cat: 'lean', dot: '#F72585',
+    price: 165, cat: 'lean', dot: '#F72585',
   },
   ghkcu: {
     name: 'Velvet Skin',
     spec: 'GHK-Cu Glow Blend · 50mg · Lyophilised Powder',
-    price: 95, cat: 'glow', dot: '#C77DFF',
+    price: 55, cat: 'glow', dot: '#C77DFF',
   },
   mt2: {
     name: 'Skin Glow MT-2',
     spec: 'Melanotan II · 10mg · Nasal Spray Solution',
-    price: 89, cat: 'glow', dot: '#C77DFF', pill: 'Nasal Spray',
+    price: 49, cat: 'glow', dot: '#C77DFF', pill: 'Nasal Spray',
   },
   encore: {
     name: 'Encore',
     spec: 'BPC-157 / TB-500 · 5mg / 5mg · Lyophilised Powder',
-    price: 89, cat: 'recovery', dot: '#D4AF37', pill: 'Dual Compound',
+    price: 49, cat: 'recovery', dot: '#D4AF37', pill: 'Dual Compound',
   },
   glutathione: {
     name: 'Crystal Bright',
     spec: 'L-Glutathione · 1500mg · Lyophilised Powder',
-    price: 78, cat: 'glow', dot: '#9b59b6',
+    price: 45, cat: 'glow', dot: '#9b59b6',
   },
   pins: {
     name: 'Stage Pins',
     spec: 'Insulin Syringes 29g · 10-pack',
-    price: 18, cat: 'supply', dot: '#6a6a70',
+    price: 9, cat: 'supply', dot: '#6a6a70',
   },
   swabs: {
     name: 'Prep Swabs',
     spec: 'IPA Alcohol Pads · 50-pack',
-    price: 14, cat: 'supply', dot: '#6a6a70',
+    price: 7, cat: 'supply', dot: '#6a6a70',
   },
   draw: {
     name: 'Draw Set',
     spec: '21g Blunt Draw Needles · 5-pack',
-    price: 16, cat: 'supply', dot: '#6a6a70',
+    price: 8, cat: 'supply', dot: '#6a6a70',
   },
   sharps: {
     name: 'Stage Safe',
     spec: 'Travel Sharps Container · Matte Black',
-    price: 22, cat: 'supply', dot: '#6a6a70',
+    price: 12, cat: 'supply', dot: '#6a6a70',
   },
   pouch: {
     name: 'Night Kit',
     spec: 'Insulated Peptide Travel Pouch',
-    price: 35, cat: 'supply', dot: '#6a6a70',
+    price: 18, cat: 'supply', dot: '#6a6a70',
   },
 };
 

@@ -77,7 +77,7 @@
 
             <div class="cart-summary-total-row">
               <span class="cart-summary-total-label">Total</span>
-              <span class="cart-summary-total-amount" id="cart-total">$0</span>
+              <span class="cart-summary-total-amount" id="cart-total">£0</span>
             </div>
 
             <div class="cart-summary-note">
@@ -159,7 +159,7 @@
           +   '<span class="cart-step-val" id="qty-' + k + '">' + q + '</span>'
           +   '<button class="cart-step-btn" onclick="changeQty(\'' + k + '\',1)">+</button>'
           + '</div>'
-          + '<div class="cart-row-price" id="sub-' + k + '">$' + sub + '</div>'
+          + '<div class="cart-row-price" id="sub-' + k + '">£' + sub + '</div>'
           + '<button class="cart-row-remove" onclick="removeFromCart(\'' + k + '\')" aria-label="Remove">×</button>'
           + '</div>';
       }).join('');
@@ -170,11 +170,11 @@
         var q = cart[k];
         return '<div class="cart-sl">'
           + '<span class="cart-sl-name">' + p.name + ' <span class="cart-sl-qty">×' + q + '</span></span>'
-          + '<span class="cart-sl-price">$' + (p.price * q) + '</span>'
+          + '<span class="cart-sl-price">£' + (p.price * q) + '</span>'
           + '</div>';
       }).join('');
 
-      totalEl.textContent = '$' + total;
+      totalEl.textContent = '£' + total;
     }
 
     function changeQty(key, delta) {

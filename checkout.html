@@ -195,7 +195,7 @@
           + '</div>';
       }).join('');
 
-      document.getElementById('co-order-total').textContent = '$' + total;
+      document.getElementById('co-order-total').textContent = '£' + total;
 
       // Right summary column
       var summaryEl = document.getElementById('co-summary-lines');
@@ -208,7 +208,7 @@
           + '</div>';
       }).join('');
 
-      document.getElementById('co-summary-total').textContent = '$' + total;
+      document.getElementById('co-summary-total').textContent = '£' + total;
     }
 
     function sendToWhatsApp() {
@@ -236,7 +236,7 @@
         var q   = cart[k];
         var sub = p.price * q;
         total  += sub;
-        return '  • ' + p.name + ' ×' + q + ' — $' + sub;
+        return '  • ' + p.name + ' ×' + q + ' — £' + sub;
       }).join('\n');
 
       var msg = [
@@ -251,7 +251,7 @@
         '*Order*',
         orderLines,
         '',
-        '*Total: $' + total + '*',
+        '*Total: £' + total + '*',
         notes ? '\nNotes: ' + notes : null,
         '',
         '_Sent via midnightballerinas.com_'

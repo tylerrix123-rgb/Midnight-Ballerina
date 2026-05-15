@@ -2021,6 +2021,56 @@ footer {
   line-height: 1.5;
 }
 
+/* Discount code input */
+.co-discount-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+.co-discount-input {
+  flex: 1;
+  font-size: 13px;
+  padding: 11px 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.co-discount-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.co-discount-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: rgba(212,175,55,0.08);
+}
+.co-discount-msg {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+.co-discount-msg--success {
+  color: #25D366;
+  background: rgba(37,211,102,0.07);
+  border: 1px solid rgba(37,211,102,0.25);
+}
+.co-discount-msg--error {
+  color: var(--neon-pink-soft);
+  background: rgba(247,37,133,0.07);
+  border: 1px solid rgba(247,37,133,0.2);
+}
+
 /* Legal fine print */
 .co-legal {
   color: var(--text-muted);

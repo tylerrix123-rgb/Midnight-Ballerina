@@ -2752,3 +2752,229 @@ footer {
   .pp-buy-row { gap: 16px; }
   .pp-purity-strip { gap: 12px; font-size: 8px; }
 }
+
+/* ============================================
+   MOBILE — comprehensive fixes for small screens
+   ============================================ */
+
+/* ── Nav ── */
+@media (max-width: 600px) {
+  nav { padding: 14px 16px; gap: 0; }
+
+  .logo {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+
+  #mobile-menu {
+    font-size: 10px;
+    padding: 6px 12px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Nav links dropdown on mobile — full-width, stacked */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column !important;
+    background: rgba(20, 16, 26, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 20px 24px;
+    gap: 18px;
+    z-index: 100;
+  }
+}
+
+/* ── Hero ── */
+@media (max-width: 600px) {
+  .hero-content-wrap { padding: 90px 20px 60px; }
+
+  .hero-stats {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-stat-num { font-size: 22px; }
+  .hero-stat-label { font-size: 8px; }
+
+  .hero p.lede { font-size: 14px; }
+
+  /* Hero buttons side by side */
+  .hero-content-wrap > div { gap: 10px; }
+  .btn-neon, .btn-ghost {
+    padding: 14px 24px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+}
+
+/* ── Sections / general spacing ── */
+@media (max-width: 600px) {
+  .section { padding: 48px 16px; }
+  .section-title { font-size: clamp(1.7rem, 7vw, 2.5rem); }
+}
+
+/* ── Shop — filter pills & product grid ── */
+@media (max-width: 600px) {
+  .filter-pills { padding: 0 16px 8px; gap: 6px; }
+  .filter-pill { padding: 8px 14px; font-size: 10px; }
+
+  /* 2-col grid — tighter */
+  .product-grid { gap: 10px; padding: 0 16px; }
+
+  .product-card {
+    padding: 14px 12px;
+    min-height: unset;
+    border-radius: var(--radius-sm);
+  }
+  .product-img {
+    margin: -14px -12px 14px;
+    aspect-ratio: 3/2;
+  }
+  .product-tag { font-size: 8px; margin-bottom: 8px; }
+  .product-name { font-size: 11.5px; letter-spacing: 1px; }
+  .product-desc { font-size: 11px; line-height: 1.5; margin-bottom: 14px; }
+  .product-badge-spray,
+  .product-badge-dual { font-size: 8px; padding: 3px 8px; }
+
+  /* Stack price + button vertically so nothing overflows */
+  .product-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 12px;
+  }
+  .product-price { font-size: 18px; }
+  .product-add-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 9px;
+  }
+}
+
+/* ── Cart page ── */
+@media (max-width: 600px) {
+  .cart-wrap { padding: 0 16px 60px; }
+
+  .cart-panel { padding: 18px 14px; }
+  .cart-panel-label { font-size: 8px; }
+
+  /* On very small screens wrap the row so stepper sits below name */
+  .cart-row { flex-wrap: wrap; gap: 10px; }
+  .cart-row-info { flex-basis: calc(100% - 48px); } /* full width minus dot + remove */
+  .cart-row-dot { align-self: flex-start; margin-top: 3px; }
+  .cart-row-stepper {
+    order: 4;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    padding: 4px 10px;
+  }
+  .cart-step-val { font-size: 12px; }
+  .cart-row-price { display: none; } /* already hidden at 480, keep it */
+  .cart-row-remove { order: 3; align-self: flex-start; margin-top: 2px; }
+
+  .cart-summary-col { width: 100%; }
+  .cart-summary-total-amount { font-size: 24px; }
+}
+
+/* ── Product detail page ── */
+@media (max-width: 600px) {
+  .pp-breadcrumb { padding: 14px 16px; font-size: 10px; }
+
+  .pp-hero {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 16px 48px;
+  }
+  .pp-img-col { position: static; width: 100%; }
+  .pp-img-wrap { aspect-ratio: 4/3; }
+
+  .pp-headline { font-size: clamp(28px, 9vw, 44px); }
+  .pp-tagline { font-size: 14px; }
+  .pp-desc { font-size: 13px; }
+
+  /* Buy row — wrap so price sits above stepper */
+  .pp-buy-row {
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .pp-price { font-size: 40px; }
+  .pp-qty-wrap { padding: 8px 16px; }
+
+  .pp-purity-strip {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    font-size: 8px;
+  }
+
+  .pp-stacks-grid { grid-template-columns: 1fr; }
+  .pp-stack-card-img { height: 160px; }
+}
+
+/* ── Checkout page ── */
+@media (max-width: 600px) {
+  .co-hero { padding: 48px 16px 28px; }
+  .co-hero-title { font-size: clamp(26px, 8vw, 42px); }
+
+  .co-layout {
+    flex-direction: column;
+    padding: 0 16px 60px;
+    gap: 20px;
+  }
+  .co-right { width: 100%; position: static; }
+  .co-panel { padding: 18px 16px; border-radius: var(--radius-md); }
+  .co-form-grid { grid-template-columns: 1fr; }
+  .co-field-full { grid-column: 1; }
+
+  .co-order-line { padding: 10px 8px; gap: 10px; }
+  .co-order-line-qty,
+  .co-order-line-price { font-size: 12px; }
+  .co-order-total-amount { font-size: 20px; }
+
+  .co-summary-wrap { padding: 18px; }
+  .co-summary-total-amount { font-size: 24px; }
+  .co-wa-btn { font-size: 12px; padding: 15px 20px; }
+}
+
+/* ── Quiz ── */
+@media (max-width: 600px) {
+  .quiz-shell { margin: 32px auto; padding: 0 16px; }
+  .quiz-container { padding: 24px 18px; }
+  .quiz-question { font-size: 22px; }
+  .quiz-option { padding: 14px 16px; font-size: 13px; }
+  .quiz-result { padding: 24px 18px; }
+  .quiz-result-name { font-size: 26px; }
+}
+
+/* ── Protocols page ── */
+@media (max-width: 600px) {
+  .protocol-hero { padding: 70px 16px 40px; }
+  .protocol-grid { padding: 24px 16px 60px; gap: 20px; }
+  .protocol-card { padding: 24px 20px; }
+  .protocol-card-num { font-size: 48px; }
+  .timeline-row { grid-template-columns: 70px 1fr; gap: 14px; }
+  .timeline-time { font-size: 15px; }
+  .protocol-timeline { padding: 0 16px; }
+}
+
+/* ── Very small screens (iPhone SE, 375px) ── */
+@media (max-width: 380px) {
+  .logo { font-size: 14px; letter-spacing: 1px; }
+
+  nav { padding: 12px 14px; }
+
+  .product-grid { gap: 8px; padding: 0 12px; }
+  .product-card { padding: 12px 10px; }
+  .product-img { margin: -12px -10px 12px; }
+  .product-name { font-size: 10.5px; }
+
+  .pp-price { font-size: 34px; }
+  .co-hero-title { font-size: 26px; }
+}

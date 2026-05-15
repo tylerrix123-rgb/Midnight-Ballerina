@@ -294,6 +294,20 @@
 
       cartTotal = total;
       document.getElementById('co-summary-total').textContent = '£' + total;
+
+      // Block discount codes if a bundle deal is already active
+      if (localStorage.getItem('mb_bundle_discount') === 'true') {
+        var input   = document.getElementById('co-discount-code');
+        var btn     = document.querySelector('.co-discount-btn');
+        var msgEl   = document.getElementById('co-discount-msg');
+        input.disabled       = true;
+        input.placeholder    = 'Bundle deal active';
+        btn.disabled         = true;
+        btn.style.opacity    = '0.4';
+        msgEl.textContent    = 'A bundle discount is already applied — codes cannot be combined.';
+        msgEl.className      = 'co-discount-msg co-discount-msg--error';
+        msgEl.style.display  = 'block';
+      }
     }
 
     function sendToWhatsApp() {

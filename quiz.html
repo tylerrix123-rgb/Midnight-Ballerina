@@ -348,6 +348,7 @@
       currentResultItems.forEach(function(item) {
         if (item.key) mbAddItem(item.key, 1);
       });
+      localStorage.setItem('mb_bundle_discount', 'true');
       window.location.href = 'cart.html';
     }
 

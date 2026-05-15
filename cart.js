@@ -94,6 +94,7 @@ function mbRemoveItem(key) {
 
 function mbClearCart() {
   localStorage.removeItem(MB_CART_KEY);
+  localStorage.removeItem('mb_bundle_discount');
   mbUpdateBadge();
 }
 

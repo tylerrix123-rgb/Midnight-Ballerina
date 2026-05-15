@@ -174,11 +174,15 @@
     // ──────────────────────────────────────────────────────────────────────
 
     // ── DISCOUNT CODES — add yours here ───────────────────────────────────
-    // Format: 'CODE': { type: 'percent', value: 10 }  → 10% off
-    //         'CODE': { type: 'fixed',   value: 15 }  → £15 off
+    // Format: 'CODE': { type: 'percent',  value: 10 }  → 10% off
+    //         'CODE': { type: 'fixed',    value: 15 }  → £15 off
+    //         'CODE': { type: 'shipping' }             → free shipping
+    // Note: 'shipping' codes work even when a bundle deal is active.
+    //       'percent' and 'fixed' codes are blocked by bundle deals.
     const DISCOUNT_CODES = {
-      'WELCOME10': { type: 'percent', value: 10 },
-      'MIDNIGHT15': { type: 'percent', value: 15 },
+      'WELCOME10':  { type: 'percent',  value: 10 },
+      'MIDNIGHT15': { type: 'percent',  value: 15 },
+      'FREESHIP':   { type: 'shipping' },
     };
     // ──────────────────────────────────────────────────────────────────────
 
@@ -186,30 +190,35 @@
     var cartTotal = 0;
 
     function applyDiscount() {
-      var input   = document.getElementById('co-discount-code');
-      var msgEl   = document.getElementById('co-discount-msg');
-      var code    = input.value.trim().toUpperCase();
+      var input    = document.getElementById('co-discount-code');
+      var msgEl    = document.getElementById('co-discount-msg');
+      var code     = input.value.trim().toUpperCase();
+      var bundleOn = localStorage.getItem('mb_bundle_discount') === 'true';
 
       if (!code) return;
 
       var discount = DISCOUNT_CODES[code];
 
       if (!discount) {
-        msgEl.textContent  = 'That code isn\'t valid. Check and try again.';
-        msgEl.className    = 'co-discount-msg co-discount-msg--error';
+        msgEl.textContent   = 'That code isn\'t valid. Check and try again.';
+        msgEl.className     = 'co-discount-msg co-discount-msg--error';
         msgEl.style.display = 'block';
         appliedDiscount = null;
         updateTotalDisplay();
         return;
       }
 
-      appliedDiscount = { code: code, type: discount.type, value: discount.value };
+      // Block non-shipping codes when a bundle deal is active
+      if (bundleOn && discount.type !== 'shipping') {
+        msgEl.textContent   = 'This code can\'t be used with a bundle deal. Free shipping codes are still accepted.';
+        msgEl.className     = 'co-discount-msg co-discount-msg--error';
+        msgEl.style.display = 'block';
+        return;
+      }
 
-      var saving = discount.type === 'percent'
-        ? Math.round(cartTotal * discount.value / 100)
-        : Math.min(discount.value, cartTotal);
+      appliedDiscount = { code: code, type: discount.type, value: discount.value || 0 };
 
-      msgEl.textContent   = '✓ Code applied!';
+      msgEl.textContent   = discount.type === 'shipping' ? '✓ Free shipping applied!' : '✓ Code applied!';
       msgEl.className     = 'co-discount-msg co-discount-msg--success';
       msgEl.style.display = 'block';
       input.disabled      = true;
@@ -228,15 +237,22 @@
       var totalEl        = document.getElementById('co-summary-total');
 
       if (appliedDiscount) {
-        var saving = appliedDiscount.type === 'percent'
-          ? Math.round(cartTotal * appliedDiscount.value / 100)
-          : Math.min(appliedDiscount.value, cartTotal);
-        var finalTotal = Math.max(0, cartTotal - saving);
+        if (appliedDiscount.type === 'shipping') {
+          discountLabel.textContent  = appliedDiscount.code + ' · Free Shipping';
+          discountAmount.textContent = '✓ Free';
+          discountRow.style.display  = 'flex';
+          totalEl.textContent        = '£' + cartTotal; // total unchanged
+        } else {
+          var saving = appliedDiscount.type === 'percent'
+            ? Math.round(cartTotal * appliedDiscount.value / 100)
+            : Math.min(appliedDiscount.value, cartTotal);
+          var finalTotal = Math.max(0, cartTotal - saving);
 
-        discountLabel.textContent  = appliedDiscount.code + ' (' + appliedDiscount.value + (appliedDiscount.type === 'percent' ? '%' : '£') + ' off)';
-        discountAmount.textContent = '−£' + saving;
-        discountRow.style.display  = 'flex';
-        totalEl.textContent        = '£' + finalTotal;
+          discountLabel.textContent  = appliedDiscount.code + ' (' + appliedDiscount.value + (appliedDiscount.type === 'percent' ? '%' : '£') + ' off)';
+          discountAmount.textContent = '−£' + saving;
+          discountRow.style.display  = 'flex';
+          totalEl.textContent        = '£' + finalTotal;
+        }
       } else {
         discountRow.style.display = 'none';
         totalEl.textContent       = '£' + cartTotal;
@@ -295,18 +311,12 @@
       cartTotal = total;
       document.getElementById('co-summary-total').textContent = '£' + total;
 
-      // Block discount codes if a bundle deal is already active
+      // If a bundle deal is active, only allow free shipping codes
       if (localStorage.getItem('mb_bundle_discount') === 'true') {
-        var input   = document.getElementById('co-discount-code');
-        var btn     = document.querySelector('.co-discount-btn');
-        var msgEl   = document.getElementById('co-discount-msg');
-        input.disabled       = true;
-        input.placeholder    = 'Bundle deal active';
-        btn.disabled         = true;
-        btn.style.opacity    = '0.4';
-        msgEl.textContent    = 'A bundle discount is already applied — codes cannot be combined.';
-        msgEl.className      = 'co-discount-msg co-discount-msg--error';
-        msgEl.style.display  = 'block';
+        var msgEl = document.getElementById('co-discount-msg');
+        msgEl.textContent   = 'Bundle deal active — only free shipping codes can be applied.';
+        msgEl.className     = 'co-discount-msg co-discount-msg--error';
+        msgEl.style.display = 'block';
       }
     }
 
@@ -341,11 +351,15 @@
       var finalTotal = total;
       var discountLine = null;
       if (appliedDiscount) {
-        var saving = appliedDiscount.type === 'percent'
-          ? Math.round(total * appliedDiscount.value / 100)
-          : Math.min(appliedDiscount.value, total);
-        finalTotal = Math.max(0, total - saving);
-        discountLine = 'Discount (' + appliedDiscount.code + '): −£' + saving;
+        if (appliedDiscount.type === 'shipping') {
+          discountLine = 'Shipping: FREE (' + appliedDiscount.code + ')';
+        } else {
+          var saving = appliedDiscount.type === 'percent'
+            ? Math.round(total * appliedDiscount.value / 100)
+            : Math.min(appliedDiscount.value, total);
+          finalTotal = Math.max(0, total - saving);
+          discountLine = 'Discount (' + appliedDiscount.code + '): −£' + saving;
+        }
       }
 
       var msg = [

@@ -62,7 +62,7 @@
         <div id="co-order-lines"></div>
         <div class="co-order-total-row">
           <span class="co-order-total-label">Order Total</span>
-          <span class="co-order-total-amount" id="co-order-total">$0</span>
+          <span class="co-order-total-amount" id="co-order-total">£0</span>
         </div>
       </div>
 
@@ -112,7 +112,7 @@
 
         <div class="co-summary-total">
           <span>Total</span>
-          <span class="co-summary-total-amount" id="co-summary-total">$0</span>
+          <span class="co-summary-total-amount" id="co-summary-total">£0</span>
         </div>
 
         <div id="co-error" class="co-error" style="display:none;"></div>
@@ -190,7 +190,7 @@
           + '</div>'
           + '<div class="co-order-line-right">'
           +   '<span class="co-order-line-qty">×' + q + '</span>'
-          +   '<span class="co-order-line-price">$' + sub + '</span>'
+          +   '<span class="co-order-line-price">£' + sub + '</span>'
           + '</div>'
           + '</div>';
       }).join('');
@@ -204,7 +204,7 @@
         var q = cart[k];
         return '<div class="co-summary-line">'
           + '<span class="co-summary-line-name">' + p.name + ' <span class="co-summary-qty">×' + q + '</span></span>'
-          + '<span class="co-summary-line-price">$' + (p.price * q) + '</span>'
+          + '<span class="co-summary-line-price">£' + (p.price * q) + '</span>'
           + '</div>';
       }).join('');
 

@@ -69,7 +69,26 @@
       cursor: pointer;
       font-size: 12px;
     }
-    .calc-presets button:hover { border-color: var(--gold); color: var(--gold); }
+    .unit-pair { display: flex; gap: 8px; margin-top: 8px; }
+    .unit-pair button {
+      flex: 1;
+      appearance: none;
+      border: 1px solid rgba(201, 130, 141, 0.45);
+      background: transparent;
+      color: var(--blush);
+      border-radius: 12px;
+      padding: 8px 10px 7px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .unit-pair button strong { display: block; font-size: 13px; letter-spacing: 0.08em; }
+    .unit-pair button small { display: block; margin-top: 2px; font-size: 10px; letter-spacing: 0.04em; color: var(--text-muted); }
+    .unit-pair button.active {
+      background: rgba(247, 37, 133, 0.16);
+      border-color: var(--neon-pink);
+      color: var(--text-primary);
+    }
+    .unit-pair button.active small { color: var(--rose-gold-soft); }
     .calc-readout {
       margin-top: 22px;
       padding: 22px;
@@ -158,17 +177,7 @@
       <div class="calc-card">
         <div class="calc-grid">
           <div class="calc-field">
-            <label for="vial">Vial (mg)</label>
-            <input id="vial" type="number" min="0" step="any" value="10" />
-            <div class="calc-presets" data-for="vial">
-              <button type="button" data-value="5">5</button>
-              <button type="button" data-value="10">10</button>
-              <button type="button" data-value="30">30</button>
-              <button type="button" data-value="50">50</button>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label for="water">Mixed with (mL)</label>
+            <label for="water">Mixed with bac water (mL)</label>
             <input id="water" type="number" min="0" step="any" value="1" />
             <div class="calc-presets" data-for="water">
               <button type="button" data-value="1">1</button>
@@ -179,14 +188,22 @@
             </div>
           </div>
           <div class="calc-field">
-            <label for="target">Target amount (mg)</label>
+            <label for="vial">Vial</label>
+            <input id="vial" type="number" min="0" step="any" value="10" />
+            <div class="calc-presets" data-for="vial">
+              <button type="button" data-value="5">5</button>
+              <button type="button" data-value="10">10</button>
+              <button type="button" data-value="30">30</button>
+              <button type="button" data-value="50">50</button>
+            </div>
+            <small style="display:block; margin-top:6px; color:var(--text-muted); letter-spacing:0.04em;">Peptide total mg</small>
+          </div>
+          <div class="calc-field">
+            <label for="target">Target amount</label>
             <input id="target" type="number" min="0" step="any" value="3" />
-            <div class="calc-presets" data-for="target">
-              <button type="button" data-value="0.25">0.25</button>
-              <button type="button" data-value="0.5">0.5</button>
-              <button type="button" data-value="1">1</button>
-              <button type="button" data-value="2">2</button>
-              <button type="button" data-value="3">3</button>
+            <div class="unit-pair" id="unit-pair">
+              <button type="button" data-unit="mg" class="active"><strong>MG</strong><small>milligrams</small></button>
+              <button type="button" data-unit="mcg"><strong>MCG</strong><small>micrograms</small></button>
             </div>
           </div>
         </div>
@@ -228,6 +245,7 @@
     const vial = document.getElementById('vial');
     const water = document.getElementById('water');
     const target = document.getElementById('target');
+    let targetUnit = 'mg';
 
     function fmt(n) {
       if (!Number.isFinite(n)) return '—';
@@ -237,7 +255,8 @@
     function calculate() {
       const vialMg = Number(vial.value);
       const waterMl = Number(water.value);
-      const targetMg = Number(target.value);
+      const entered = Number(target.value);
+      const targetMg = targetUnit === 'mcg' ? entered / 1000 : entered;
       const ok = vialMg > 0 && waterMl > 0 && targetMg > 0;
       const perMl = ok ? vialMg / waterMl : NaN;
       const draw = ok ? targetMg / perMl : NaN;
@@ -249,7 +268,7 @@
       if (!ok) {
         mark.textContent = '—';
         fill.style.width = '0%';
-        note.textContent = 'Enter the vial, the water, and the target amount.';
+        note.textContent = 'Enter the bac water, the peptide total, and the target amount.';
         caption.textContent = '1 mL barrel';
         return;
       }
@@ -259,11 +278,22 @@
       fill.style.width = pct + '%';
       caption.textContent = draw > 1 ? 'Past the end of a 1 mL barrel' : '1 mL barrel';
       note.className = 'calc-note' + (draw > 1 ? ' calc-warn' : '');
+      const targetText = targetUnit === 'mcg'
+        ? entered + ' mcg (' + fmt(targetMg) + ' mg)'
+        : entered + ' mg';
       note.textContent =
-        vialMg + ' mg ÷ ' + waterMl + ' mL = ' + fmt(perMl) + ' mg per mL. ' +
-        targetMg + ' mg ÷ ' + fmt(perMl) + ' mg/mL = ' + fmt(draw) + ' on a 1 mL insulin syringe.' +
+        vialMg + ' mg peptide in the vial, mixed with ' + waterMl + ' mL bac water = ' + fmt(perMl) + ' mg per mL. ' +
+        targetText + ' = ' + fmt(draw) + ' on a 1 mL insulin syringe.' +
         (draw > 1 ? ' That is more than one full syringe.' : '');
     }
+
+    document.getElementById('unit-pair').addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      targetUnit = button.dataset.unit;
+      document.querySelectorAll('#unit-pair button').forEach((b) => b.classList.toggle('active', b === button));
+      calculate();
+    });
 
     document.querySelectorAll('.calc-presets').forEach((row) => {
       row.addEventListener('click', (event) => {

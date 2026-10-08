@@ -177,7 +177,18 @@
       <div class="calc-card">
         <div class="calc-grid">
           <div class="calc-field">
-            <label for="water">Mixed with bac water (mL)</label>
+            <label for="vial">Lyophilised powder total</label>
+            <input id="vial" type="number" min="0" step="any" value="10" />
+            <div class="calc-presets" data-for="vial">
+              <button type="button" data-value="5">5</button>
+              <button type="button" data-value="10">10</button>
+              <button type="button" data-value="30">30</button>
+              <button type="button" data-value="50">50</button>
+            </div>
+            <small style="display:block; margin-top:6px; color:var(--text-muted); letter-spacing:0.04em;">Milligrams in the powder</small>
+          </div>
+          <div class="calc-field">
+            <label for="water">Bac water</label>
             <input id="water" type="number" min="0" step="any" value="1" />
             <div class="calc-presets" data-for="water">
               <button type="button" data-value="1">1</button>
@@ -186,17 +197,7 @@
               <button type="button" data-value="5">5</button>
               <button type="button" data-value="10">10</button>
             </div>
-          </div>
-          <div class="calc-field">
-            <label for="vial">Vial</label>
-            <input id="vial" type="number" min="0" step="any" value="10" />
-            <div class="calc-presets" data-for="vial">
-              <button type="button" data-value="5">5</button>
-              <button type="button" data-value="10">10</button>
-              <button type="button" data-value="30">30</button>
-              <button type="button" data-value="50">50</button>
-            </div>
-            <small style="display:block; margin-top:6px; color:var(--text-muted); letter-spacing:0.04em;">Peptide total mg</small>
+            <small style="display:block; margin-top:6px; color:var(--text-muted); letter-spacing:0.04em;">Millilitres mixed in</small>
           </div>
           <div class="calc-field">
             <label for="target">Target amount</label>
@@ -268,7 +269,7 @@
       if (!ok) {
         mark.textContent = '—';
         fill.style.width = '0%';
-        note.textContent = 'Enter the bac water, the peptide total, and the target amount.';
+        note.textContent = 'Enter the powder total, the bac water, and the target amount.';
         caption.textContent = '1 mL barrel';
         return;
       }
@@ -282,7 +283,7 @@
         ? entered + ' mcg (' + fmt(targetMg) + ' mg)'
         : entered + ' mg';
       note.textContent =
-        vialMg + ' mg peptide in the vial, mixed with ' + waterMl + ' mL bac water = ' + fmt(perMl) + ' mg per mL. ' +
+        vialMg + ' mg lyophilised powder, mixed with ' + waterMl + ' mL bac water = ' + fmt(perMl) + ' mg per mL. ' +
         targetText + ' = ' + fmt(draw) + ' on a 1 mL insulin syringe.' +
         (draw > 1 ? ' That is more than one full syringe.' : '');
     }

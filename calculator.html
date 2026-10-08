@@ -116,28 +116,61 @@
       color: var(--gold);
     }
     .calc-readout em { display: block; margin-top: 8px; font-style: normal; color: var(--text-secondary); }
-    .syringe { margin-top: 16px; }
+    .syringe { margin-top: 18px; }
     .syringe-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+    .barrel-wrap { position: relative; padding-top: 18px; }
     .syringe-track {
       position: relative;
-      height: 28px;
-      border-radius: 999px;
-      background: #14101a;
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      height: 36px;
+      border-radius: 8px 18px 18px 8px;
+      background:
+        repeating-linear-gradient(90deg, rgba(248,249,250,0.16) 0 1px, transparent 1px 10%),
+        linear-gradient(#1c1722, #14101a);
+      border: 1px solid rgba(212, 175, 55, 0.45);
       overflow: hidden;
     }
     .syringe-fill {
       height: 100%;
       width: 0;
-      background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
-      box-shadow: 0 0 16px var(--neon-glow);
+      background: linear-gradient(90deg, rgba(199,125,255,0.55), rgba(247,37,133,0.8));
     }
-    .syringe-ticks {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
+    .syringe-needle {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      width: 28px;
+      height: 3px;
+      margin-top: -1px;
+      background: var(--gold);
+      border-radius: 0 2px 2px 0;
+    }
+    .syringe-scale { position: relative; height: 34px; margin-top: 4px; }
+    .syringe-tick {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      height: 10px;
+      background: rgba(248,249,250,0.45);
+      transform: translateX(-50%);
+    }
+    .syringe-tick.major { height: 16px; background: var(--gold); }
+    .syringe-tick span {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .plunger {
+      position: absolute;
+      top: 14px;
+      width: 2px;
+      height: 44px;
+      background: var(--neon-pink);
+      box-shadow: 0 0 10px var(--neon-glow);
+      transform: translateX(-50%);
     }
     .calc-note { margin-top: 14px; font-size: 14px; line-height: 1.6; color: var(--text-secondary); }
     .calc-warn { color: var(--blush); }
@@ -216,9 +249,15 @@
         </div>
 
         <div class="syringe">
-          <div class="syringe-top"><span>0</span><span id="syringe-caption">1 mL barrel</span><span>1.0</span></div>
-          <div class="syringe-track"><div class="syringe-fill" id="syringe-fill"></div></div>
-          <div class="syringe-ticks"><span>0.2</span><span>0.4</span><span>0.6</span><span>0.8</span></div>
+          <div class="syringe-top"><span>1 mL insulin syringe</span><span id="syringe-caption">0.1 marks to 1.0</span></div>
+          <div class="barrel-wrap">
+            <div class="syringe-track">
+              <div class="syringe-fill" id="syringe-fill"></div>
+            </div>
+            <div class="syringe-needle"></div>
+            <div class="plunger" id="plunger"></div>
+            <div class="syringe-scale" id="syringe-scale"></div>
+          </div>
         </div>
         <p class="calc-note" id="formula"></p>
       </div>
@@ -253,6 +292,17 @@
       return n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
+    const scale = document.getElementById('syringe-scale');
+    for (let i = 0; i <= 10; i += 1) {
+      const tick = document.createElement('div');
+      tick.className = 'syringe-tick' + (i % 1 === 0 ? ' major' : '');
+      tick.style.left = (i * 10) + '%';
+      const label = document.createElement('span');
+      label.textContent = (i / 10).toFixed(1);
+      tick.appendChild(label);
+      scale.appendChild(tick);
+    }
+
     function calculate() {
       const vialMg = Number(vial.value);
       const waterMl = Number(water.value);
@@ -263,21 +313,24 @@
       const draw = ok ? targetMg / perMl : NaN;
       const mark = document.getElementById('mark');
       const fill = document.getElementById('syringe-fill');
+      const plunger = document.getElementById('plunger');
       const note = document.getElementById('formula');
       const caption = document.getElementById('syringe-caption');
 
       if (!ok) {
         mark.textContent = '—';
         fill.style.width = '0%';
+        plunger.style.left = '0%';
         note.textContent = 'Enter the powder total, the bac water, and the target amount.';
-        caption.textContent = '1 mL barrel';
+        caption.textContent = '0.1 marks to 1.0';
         return;
       }
 
       mark.textContent = fmt(draw);
       const pct = Math.max(0, Math.min(100, draw * 100));
       fill.style.width = pct + '%';
-      caption.textContent = draw > 1 ? 'Past the end of a 1 mL barrel' : '1 mL barrel';
+      plunger.style.left = pct + '%';
+      caption.textContent = draw > 1 ? 'Past the 1.0 mark' : 'Line at ' + fmt(draw);
       note.className = 'calc-note' + (draw > 1 ? ' calc-warn' : '');
       const targetText = targetUnit === 'mcg'
         ? entered + ' mcg (' + fmt(targetMg) + ' mg)'

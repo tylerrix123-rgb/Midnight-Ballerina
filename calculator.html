@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peptide Calculator | Midnight Ballerinas</title>
+  <meta name="description" content="Number-only peptide calculator. Vial amount and bacteriostatic water converted to mg, mcg, growth-hormone IU, and U-100 syringe marks." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .calc-page { position: relative; z-index: 1; }
+    .calc-hero { text-align: center; padding: 72px 24px 10px; }
+    .calc-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 0.95;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+    .calc-hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .calc-shell { max-width: 920px; margin: 0 auto; padding: 8px 20px 88px; }
+    .calc-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 16px; }
+    .calc-tab {
+      appearance: none;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      background: rgba(28, 23, 34, 0.8);
+      color: var(--text-secondary);
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .calc-tab.active {
+      color: #14101a;
+      border-color: var(--gold);
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold), #f5d76e);
+      box-shadow: var(--shadow-glow-gold);
+    }
+    .calc-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .calc-field label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--rose-gold-soft);
+    }
+    .calc-field input, .calc-field select {
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      background: #14101a;
+      color: var(--text-primary);
+      padding: 13px 14px;
+      font: inherit;
+    }
+    .calc-field input:focus, .calc-field select:focus {
+      outline: none;
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 0 3px rgba(247, 37, 133, 0.18);
+    }
+    .calc-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .calc-presets button, .unit-toggle button {
+      appearance: none;
+      border: 1px solid rgba(201, 130, 141, 0.45);
+      background: transparent;
+      color: var(--blush);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .calc-presets button:hover, .unit-toggle button:hover { border-color: var(--gold); color: var(--gold); }
+    .unit-toggle { display: flex; gap: 8px; margin-top: 8px; }
+    .unit-toggle button.active {
+      background: rgba(247, 37, 133, 0.16);
+      border-color: var(--neon-pink);
+      color: var(--text-primary);
+    }
+    .calc-results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+    .calc-result {
+      border-radius: 16px;
+      padding: 16px 14px;
+      background:
+        radial-gradient(circle at top right, rgba(247, 37, 133, 0.16), transparent 55%),
+        #1c1722;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+    }
+    .calc-result span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+    }
+    .calc-result strong {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .calc-result em { display: block; margin-top: 8px; font-style: normal; font-size: 12px; color: var(--text-muted); }
+    .syringe {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #14101a;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .syringe-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+    .syringe-track {
+      height: 18px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(90deg, rgba(248,249,250,0.18) 0 1px, transparent 1px 10%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      overflow: hidden;
+    }
+    .syringe-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+      box-shadow: 0 0 16px var(--neon-glow);
+    }
+    .calc-note, .calc-example { margin-top: 14px; font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+    .calc-example {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      color: var(--clinical-cream);
+    }
+    @media (max-width: 800px) { .calc-results { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .calc-results { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="disclaimer">Laboratory Research Use Only • Not for Human Consumption • Must Be 21+</div>
+
+  <nav>
+    <a href="index.html" class="logo">MIDNIGHT BALLERINAS</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Build Stack</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="calculator.html">Calculator</a>
+    </div>
+    <a href="cart.html" class="nav-cart" aria-label="Basket">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="nav-cart-badge" style="display:none;">0</span>
+    </a>
+    <div id="mobile-menu" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex')">Menu</div>
+  </nav>
+
+  <div class="calc-page">
+    <section class="calc-hero">
+      <div class="hero-eyebrow">Numbers only</div>
+      <h1>Peptide <em>calculator</em></h1>
+      <p class="lede" style="max-width: 560px; margin: 22px auto 0;">
+        Vial, bacteriostatic water, and a draw. Read it as milligrams, micrograms, growth-hormone IU, and the mark on a U-100 syringe.
+      </p>
+    </section>
+
+    <div class="calc-shell">
+      <div class="calc-tabs" role="tablist">
+        <button class="calc-tab active" type="button" data-mode="draw">1 · Volume to amount</button>
+        <button class="calc-tab" type="button" data-mode="target">2 · Amount to syringe</button>
+        <button class="calc-tab" type="button" data-mode="strength">3 · Concentration</button>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label for="vial">Vial amount (mg)</label>
+            <input id="vial" type="number" min="0" step="any" value="10" />
+            <div class="calc-presets" data-for="vial">
+              <button type="button" data-value="5">5</button>
+              <button type="button" data-value="10">10</button>
+              <button type="button" data-value="30">30</button>
+              <button type="button" data-value="50">50</button>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="water">Bacteriostatic water (mL)</label>
+            <input id="water" type="number" min="0" step="any" value="1" />
+            <div class="calc-presets" data-for="water">
+              <button type="button" data-value="1">1</button>
+              <button type="button" data-value="2">2</button>
+              <button type="button" data-value="3">3</button>
+              <button type="button" data-value="5">5</button>
+              <button type="button" data-value="10">10</button>
+            </div>
+          </div>
+          <div class="calc-field" id="draw-field">
+            <label for="draw" id="draw-label">Draw volume (mL)</label>
+            <input id="draw" type="number" min="0" step="any" value="0.1" />
+            <div class="unit-toggle" id="unit-toggle" hidden>
+              <button type="button" data-unit="iu" class="active">IU</button>
+              <button type="button" data-unit="mg">mg</button>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="factor">IU factor</label>
+            <select id="factor">
+              <option value="3">Growth hormone · 3 IU = 1 mg</option>
+              <option value="custom">Custom IU per mg</option>
+            </select>
+            <input id="custom-factor" type="number" min="0" step="any" value="3" hidden style="margin-top:8px;" />
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-result"><span id="mg-label">Milligrams</span><strong id="mg-out">—</strong><em>mass</em></div>
+          <div class="calc-result"><span id="mcg-label">Micrograms</span><strong id="mcg-out">—</strong><em>1 mg = 1,000 mcg</em></div>
+          <div class="calc-result"><span id="iu-label">IU</span><strong id="iu-out">—</strong><em id="iu-note">somatropin convention</em></div>
+          <div class="calc-result"><span id="unit-label">Syringe</span><strong id="unit-out">—</strong><em>U-100 marks · 100 = 1 mL</em></div>
+        </div>
+
+        <div class="syringe">
+          <div class="syringe-top"><span>U-100 barrel</span><span id="syringe-caption">0 marks</span></div>
+          <div class="syringe-track"><div class="syringe-fill" id="syringe-fill"></div></div>
+        </div>
+        <p class="calc-note" id="formula"></p>
+        <p class="calc-example" id="example"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">MIDNIGHT BALLERINAS</div>
+    <div class="footer-tagline">Stay clear. Stay lean. Stay in the spotlight.</div>
+    <div class="footer-links">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Stack Quiz</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-fineprint">
+      Arithmetic only. Growth-hormone IU uses the somatropin convention of 3 IU per 1 mg. Other compounds do not share that factor. U-100 marks are syringe volume, not IU. Not dosing or medical advice.
+      © Midnight Ballerinas Research, 2026.
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    const vial = document.getElementById('vial');
+    const water = document.getElementById('water');
+    const draw = document.getElementById('draw');
+    const factorSelect = document.getElementById('factor');
+    const customFactor = document.getElementById('custom-factor');
+    const drawField = document.getElementById('draw-field');
+    const drawLabel = document.getElementById('draw-label');
+    const unitToggle = document.getElementById('unit-toggle');
+    let mode = 'draw';
+    let targetUnit = 'iu';
+
+    function fmt(n, digits) {
+      if (!Number.isFinite(n)) return '—';
+      const abs = Math.abs(n);
+      const d = digits != null ? digits : (abs >= 100 ? 1 : abs >= 10 ? 2 : 3);
+      return n.toLocaleString('en-GB', { maximumFractionDigits: d });
+    }
+
+    function iuPerMg() {
+      if (factorSelect.value === 'custom') return Number(customFactor.value);
+      return Number(factorSelect.value);
+    }
+
+    function calculate() {
+      const vialMg = Number(vial.value);
+      const waterMl = Number(water.value);
+      const third = Number(draw.value);
+      const factor = iuPerMg();
+      const perMl = vialMg > 0 && waterMl > 0 ? vialMg / waterMl : NaN;
+      const factorOk = factor > 0;
+      let mg = NaN;
+      let volume = NaN;
+
+      if (mode === 'draw') {
+        volume = third;
+        mg = perMl * third;
+      } else if (mode === 'strength') {
+        volume = 1;
+        mg = perMl;
+      } else if (targetUnit === 'iu') {
+        mg = factorOk ? third / factor : NaN;
+        volume = mg / perMl;
+      } else {
+        mg = third;
+        volume = third / perMl;
+      }
+
+      const ok = Number.isFinite(mg) && Number.isFinite(volume) && volume >= 0 && (mode === 'strength' || third > 0);
+      const mcg = mg * 1000;
+      const iu = mg * factor;
+      const marks = volume * 100;
+
+      document.getElementById('mg-label').textContent = mode === 'strength' ? 'Milligrams / mL' : 'Milligrams';
+      document.getElementById('mcg-label').textContent = mode === 'strength' ? 'Micrograms / mL' : 'Micrograms';
+      document.getElementById('iu-label').textContent = mode === 'strength' ? 'IU / mL' : 'IU';
+      document.getElementById('unit-label').textContent = mode === 'strength' ? 'Syringe / mL' : 'Syringe mark';
+      document.getElementById('mg-out').textContent = ok ? fmt(mg) : '—';
+      document.getElementById('mcg-out').textContent = ok ? fmt(mcg, 1) : '—';
+      document.getElementById('iu-out').textContent = ok && factorOk ? fmt(iu) : '—';
+      document.getElementById('unit-out').textContent = ok ? fmt(marks, 1) : '—';
+      document.getElementById('iu-note').textContent = factorOk ? fmt(factor, 3) + ' IU per mg' : 'set an IU factor';
+
+      const fill = document.getElementById('syringe-fill');
+      const pct = ok ? Math.max(0, Math.min(100, marks)) : 0;
+      fill.style.width = pct + '%';
+      document.getElementById('syringe-caption').textContent = ok
+        ? fmt(marks, 1) + ' marks on a 100-mark barrel' + (marks > 100 ? ' · more than 1 mL' : '')
+        : '0 marks';
+
+      if (!ok) {
+        document.getElementById('formula').textContent = 'Enter a vial amount and a water volume above zero.';
+        document.getElementById('example').textContent = '';
+        return;
+      }
+
+      if (mode === 'draw') {
+        document.getElementById('formula').textContent =
+          fmt(vialMg) + ' mg ÷ ' + fmt(waterMl) + ' mL = ' + fmt(perMl) + ' mg/mL. ' +
+          fmt(volume) + ' mL is ' + fmt(mg) + ' mg, ' + fmt(mcg, 1) + ' mcg, ' + fmt(iu) + ' IU, and ' + fmt(marks, 1) + ' U-100 marks.';
+      } else if (mode === 'target') {
+        document.getElementById('formula').textContent =
+          fmt(iu) + ' IU ÷ ' + fmt(factor, 3) + ' IU/mg = ' + fmt(mg) + ' mg. ' +
+          fmt(mg) + ' mg ÷ ' + fmt(perMl) + ' mg/mL = ' + fmt(volume, 3) + ' mL, which is ' + fmt(marks, 1) + ' marks on a U-100 syringe.';
+      } else {
+        document.getElementById('formula').textContent =
+          fmt(vialMg) + ' mg ÷ ' + fmt(waterMl) + ' mL = ' + fmt(perMl) + ' mg/mL, ' + fmt(mcg, 1) + ' mcg/mL, ' + fmt(iu) + ' IU/mL. One millilitre is 100 U-100 marks.';
+      }
+
+      document.getElementById('example').textContent =
+        'Growth hormone check: 5 IU ÷ 3 IU per mg = 1.667 mg. In a 10 mg vial mixed with 1 mL, that draw is 0.167 mL, or 16.7 marks on a U-100 syringe. A 30 mg vial in 10 mL is 3 mg/mL, so 0.1 mL is 0.3 mg (300 mcg, 0.9 IU), and 1.0 mL is 3 mg (9 IU).';
+    }
+
+    document.querySelectorAll('.calc-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        mode = tab.dataset.mode;
+        document.querySelectorAll('.calc-tab').forEach((t) => t.classList.toggle('active', t === tab));
+        drawField.style.display = mode === 'strength' ? 'none' : '';
+        unitToggle.hidden = mode !== 'target';
+        drawLabel.textContent = mode === 'target'
+          ? (targetUnit === 'iu' ? 'Target amount (IU)' : 'Target amount (mg)')
+          : 'Draw volume (mL)';
+        if (mode === 'target' && (draw.value === '0.1' || draw.value === '0.167')) draw.value = targetUnit === 'iu' ? '5' : '1.667';
+        if (mode === 'draw' && (draw.value === '5' || draw.value === '1.667')) draw.value = '0.167';
+        calculate();
+      });
+    });
+
+    unitToggle.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      targetUnit = button.dataset.unit;
+      unitToggle.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === button));
+      drawLabel.textContent = targetUnit === 'iu' ? 'Target amount (IU)' : 'Target amount (mg)';
+      draw.value = targetUnit === 'iu' ? '5' : '1.667';
+      calculate();
+    });
+
+    document.querySelectorAll('.calc-presets').forEach((row) => {
+      row.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (!button) return;
+        document.getElementById(row.dataset.for).value = button.dataset.value;
+        calculate();
+      });
+    });
+
+    factorSelect.addEventListener('change', () => {
+      customFactor.hidden = factorSelect.value !== 'custom';
+      calculate();
+    });
+    [vial, water, draw, customFactor].forEach((input) => input.addEventListener('input', calculate));
+    calculate();
+  </script>
+</body>
+</html>
